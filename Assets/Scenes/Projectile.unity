@@ -152,6 +152,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   testprojectile: {fileID: 4419464618979366644, guid: d42013e93dd9e304484a103bf2035d9b,
     type: 3}
+  dir: {x: 1, y: 1}
 --- !u!4 &633304180
 Transform:
   m_ObjectHideFlags: 0

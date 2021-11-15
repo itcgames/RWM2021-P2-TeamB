@@ -8,7 +8,6 @@ public abstract class BaseProjectile : MonoBehaviour
 {
     [SerializeField] protected float m_ProjectileSpeed;
     [SerializeField] protected float m_LifeTime;
-    [SerializeField] protected Vector2 m_Velocity;
     [SerializeField] protected Rigidbody2D m_Rigidbody2D;
     [SerializeField] protected int m_Damage;
     private float m_Timer;
@@ -16,7 +15,6 @@ public abstract class BaseProjectile : MonoBehaviour
     public virtual void Awake()
     {
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
-        SetRotation(m_Velocity);
     }
      
     public virtual void Update()
@@ -40,9 +38,10 @@ public abstract class BaseProjectile : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
-    public virtual void Move()
+    public virtual void Move(Vector2 vel)
     {
-        m_Rigidbody2D.AddForce(m_Velocity * m_ProjectileSpeed, ForceMode2D.Force);
+        SetRotation(vel);
+        m_Rigidbody2D.AddForce(vel * m_ProjectileSpeed, ForceMode2D.Force);
     }
 
     public virtual void SetRotation(Vector2 direction)
