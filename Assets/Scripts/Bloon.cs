@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(CircleCollider2D))]
 public class Bloon : MonoBehaviour
 {
     private struct Tier
@@ -25,7 +27,15 @@ public class Bloon : MonoBehaviour
         { 4, new Tier(3.5f, new Color(1.0f,0.5f,0.5f)) }
     };
 
-    private int m_currentTier;
+    private int _currentTier;
+    private Rigidbody2D _rb;
+    private SpriteRenderer _spr;
+
+    private void Start()
+    {
+        _rb = GetComponent<Rigidbody2D>();
+        _spr = GetComponent<SpriteRenderer>();
+    }
 
     ////////////////////////////////////////////////////////////
 
@@ -38,7 +48,7 @@ public class Bloon : MonoBehaviour
 
     private void SetTier(int t_tier)
     {
-        m_currentTier = t_tier;
+        _currentTier = t_tier;
     }
 
     ////////////////////////////////////////////////////////////
@@ -56,8 +66,8 @@ public class Bloon : MonoBehaviour
     {
         // TODO: Make call to audio manager here
 
-        if (--m_currentTier >= 0)
-            SetTier(m_currentTier);
+        if (--_currentTier >= 0)
+            SetTier(_currentTier);
         else
             Pop();
     }
