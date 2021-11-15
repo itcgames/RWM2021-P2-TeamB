@@ -8,10 +8,12 @@ public class BaseTower : MonoBehaviour
     public float _reloadTime;
     public float _range;
     GameObject _target;
+    TargetingSystem _targetingSystem;
 
 
     void Awake()
     {
+        _targetingSystem = GetComponent<TargetingSystem>();
         GameObject child = new GameObject();
         child.transform.parent = this.transform;
         RangeDetection script = child.AddComponent<RangeDetection>();
@@ -46,12 +48,10 @@ public class BaseTower : MonoBehaviour
 
     public virtual void Fire()
     {
-        // fire at the object
         if (_waitToFire <= 0)
         {
             _waitToFire = _reloadTime;
-            Vector3 diffVector = _target.transform.position - transform.position;
-            Vector3 velocity = new Vector3(diffVector.x, diffVector.y, 0.0f);
+            Vector2 velocity = _targetingSystem.getVelocity(_target.transform.position, transform.position);
             // pass velocity to bullet
         }
     }
