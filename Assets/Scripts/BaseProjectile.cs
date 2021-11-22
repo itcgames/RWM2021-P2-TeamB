@@ -11,7 +11,7 @@ public abstract class BaseProjectile : MonoBehaviour
     [SerializeField] protected Rigidbody2D m_Rigidbody2D;
     [SerializeField] protected int m_Damage;
     private float m_Timer;
-  
+
     public virtual void Awake()
     {
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
@@ -30,7 +30,7 @@ public abstract class BaseProjectile : MonoBehaviour
     {
         if(other.CompareTag("bloon"))
         {
-            // other.GetComponent<Bloon>().health -= dmg;
+            //other.GetComponent<Bloon>().hit();
             Destroy(this.gameObject);
         }
         else if(other.CompareTag("obstacle"))
@@ -41,7 +41,7 @@ public abstract class BaseProjectile : MonoBehaviour
     public virtual void Move(Vector2 vel)
     {
         SetRotation(vel);
-        m_Rigidbody2D.AddForce(vel * m_ProjectileSpeed, ForceMode2D.Force);
+        m_Rigidbody2D.AddForce(vel * m_ProjectileSpeed, ForceMode2D.Impulse);
     }
 
     public virtual void SetRotation(Vector2 direction)

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class TestFire : MonoBehaviour
 {
     public GameObject testprojectile;
@@ -27,4 +26,3 @@ public class TestFire : MonoBehaviour
         return currentProjectile;
     }
 }
-

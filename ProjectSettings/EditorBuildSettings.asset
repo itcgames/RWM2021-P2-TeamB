@@ -5,7 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Projectile.unity
     guid: c95f9f14861d0f74bae33ff6bb0da18f
+  - enabled: 1
+    path: Assets/Scenes/Buildweek1.unity
+    guid: 692786cd12ca4ec4f9368b054a1f4740
   m_configObjects: {}
