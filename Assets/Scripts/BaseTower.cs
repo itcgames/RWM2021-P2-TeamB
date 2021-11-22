@@ -2,21 +2,31 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(TargetingSystem))]
 public class BaseTower : MonoBehaviour
 {
-    float _waitToFire;
-    public float _reloadTime;
-    public float _range;
-    GameObject _target;
+    float _waitToFire; // how long until I can fire
+    [Tooltip("how long I have to reload")]
+    [SerializeField] float _reloadTime = 1;
+
+    [Tooltip("how far the tower can see")] 
+    [SerializeField] float _range = 1; 
+
+    GameObject _target; // object I'm firing at 
+    TargetingSystem _targetingSystem;
+
+    [Tooltip("Projectile that the tower will fire")]
+    [SerializeField]GameObject _projectile; // what im firing
 
 
     void Awake()
     {
+        _targetingSystem = GetComponent<TargetingSystem>();
         GameObject child = new GameObject();
         child.transform.parent = this.transform;
-        RangeDetection script = child.AddComponent<RangeDetection>();
-        script.setRange(_range);
-        script.OnObjectDetected += objectDetected;
+        RangeDetection rangeDetector = child.AddComponent<RangeDetection>();
+        rangeDetector.setRange(_range);
+        rangeDetector.OnObjectDetected += objectDetected;
     }
 
     private void OnDisable()
@@ -46,13 +56,27 @@ public class BaseTower : MonoBehaviour
 
     public virtual void Fire()
     {
-        // fire at the object
         if (_waitToFire <= 0)
         {
+            Vector2 velocity = new Vector2();
             _waitToFire = _reloadTime;
-            Vector3 diffVector = _target.transform.position - transform.position;
-            Vector3 velocity = new Vector3(diffVector.x, diffVector.y, 0.0f);
-            // pass velocity to bullet
+            if (_target != null)
+                velocity = _targetingSystem.getVelocity(_target.transform.position, transform.position);
+            if (_projectile != null)
+            {
+                GameObject go = Instantiate(_projectile, transform);
+                go.GetComponent<BaseProjectile>().Move(velocity);                
+            }
         }
+    }
+
+    public float getWaitTime()
+    {
+        return _waitToFire;
+    }
+
+    public float getReloadTime()
+    {
+        return _reloadTime;
     }
 }
