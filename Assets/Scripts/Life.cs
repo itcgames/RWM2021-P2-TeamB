@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Life : MonoBehaviour
 {
-    [SerializeField] private Text lifeText;
+    [SerializeField] public Text lifeText;
     [SerializeField] public int maxLives;
     [HideInInspector] public int currentLives;
 
@@ -28,6 +28,6 @@ public class Life : MonoBehaviour
 
     public void UpdateText()
     {
-        lifeText.text = $"<3 : {currentLives} / {maxLives}";
+        lifeText.text = $"{currentLives} / {maxLives}";
     }
 }

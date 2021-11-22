@@ -21,9 +21,18 @@ namespace Tests
             [UnityTest]
             public IEnumerator ReduceLife()
             {        
-                lifeSystem.GetComponent<Life>().removeLife(50);
+                lifeComponent.removeLife(23);
                 yield return new WaitForSeconds(.5f);
                 UnityEngine.Assertions.Assert.IsTrue(lifeComponent.currentLives < lifeComponent.maxLives);
+            }
+
+            [UnityTest]
+            public IEnumerator UpdateLifeTotal()
+            {        
+                string text = lifeComponent.lifeText.text;
+                lifeComponent.removeLife(2);
+                yield return new WaitForSeconds(.5f);
+                UnityEngine.Assertions.Assert.IsFalse(text == lifeComponent.lifeText.text);
             }
         }
 }
