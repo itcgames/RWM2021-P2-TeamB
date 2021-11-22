@@ -5,5 +5,36 @@ using UnityEngine;
 public class DartTower : BaseTower
 {
 
+    Animator _animator;
+    private void Start()
+    {
+        _animator = GetComponent<Animator>();
+    }
+
+    public override void Fire()
+    {
+        if (_waitToFire <= 0)
+        {
+            _animator.SetBool("attacking", true);
+            Vector2 velocity = new Vector2();
+            _waitToFire = _reloadTime;
+            if (_target != null)
+                velocity = _targetingSystem.getVelocity(_target.transform.position, transform.position);
+            if (_projectile != null)
+            {
+                _animator.SetInteger("attackAngle", _targetingSystem.getQuadrant(velocity));  
+                GameObject go = Instantiate(_projectile, transform.position, Quaternion.identity, transform);
+                go.GetComponent<BaseProjectile>().Move(velocity);
+            }
+        }
+    }
+
+    private void Update()
+    {
+        if (_waitToFire > 0)
+            _waitToFire -= Time.deltaTime;
+        else 
+            _animator.SetBool("attacking", false);
+    }
 
 }

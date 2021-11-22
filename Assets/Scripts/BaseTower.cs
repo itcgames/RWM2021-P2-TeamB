@@ -5,18 +5,18 @@ using UnityEngine;
 [RequireComponent(typeof(TargetingSystem))]
 public class BaseTower : MonoBehaviour
 {
-    float _waitToFire; // how long until I can fire
+    protected float _waitToFire; // how long until I can fire
     [Tooltip("how long I have to reload")]
-    [SerializeField] float _reloadTime = 1;
+    [SerializeField] protected float _reloadTime = 1;
 
     [Tooltip("how far the tower can see")] 
-    [SerializeField] float _range = 1; 
+    [SerializeField] protected float _range = 1; 
 
-    GameObject _target; // object I'm firing at 
-    TargetingSystem _targetingSystem;
+    protected GameObject _target; // object I'm firing at 
+    protected TargetingSystem _targetingSystem;
 
     [Tooltip("Projectile that the tower will fire")]
-    [SerializeField]GameObject _projectile; // what im firing
+    [SerializeField] protected GameObject _projectile; // what im firing
 
 
     void Awake()
@@ -66,7 +66,7 @@ public class BaseTower : MonoBehaviour
                 velocity = _targetingSystem.getVelocity(_target.transform.position, transform.position);
             if (_projectile != null)
             {
-                Debug.Log(velocity);
+                Debug.Log(Mathf.Atan2(velocity.y, velocity.x) * 180 / Mathf.PI);
                 GameObject go = Instantiate(_projectile, transform.position, Quaternion.identity, transform);
                 go.GetComponent<BaseProjectile>().Move(velocity);                
             }
