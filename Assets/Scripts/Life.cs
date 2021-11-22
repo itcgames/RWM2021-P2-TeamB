@@ -7,6 +7,7 @@ public class Life : MonoBehaviour
 {
     [SerializeField] public Text lifeText;
     [SerializeField] public int maxLives;
+    [SerializeField] private GameObject gameOverScreen;
     [HideInInspector] public int currentLives;
 
     void Start()
@@ -24,10 +25,20 @@ public class Life : MonoBehaviour
     {
         currentLives -= livesLost;
         UpdateText();
+        CheckIfDied(livesLost);
     }
 
     public void UpdateText()
     {
         lifeText.text = $"{currentLives} / {maxLives}";
+    }
+
+    public void CheckIfDied(int livesLost)
+    {
+        if(currentLives <=0)
+        {
+            gameOverScreen.SetActive(true);
+            //TODO: set timescale to 0
+        }
     }
 }
