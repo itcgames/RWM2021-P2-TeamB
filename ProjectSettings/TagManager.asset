@@ -6,6 +6,7 @@ TagManager:
   tags:
   - obstacle
   - bloon
+  - projectile
   layers:
   - Default
   - TransparentFX
