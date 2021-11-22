@@ -65,18 +65,18 @@ public class Bloon : MonoBehaviour
     {
         float speed = _bloonTiers[_currentTier].speed;
         _rb.velocity = _velocity * speed;
-
-        Debug.Log(_rb.velocity);
     }
 
     ////////////////////////////////////////////////////////////
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collision.gameObject.CompareTag("projectile"))
+        if (collider.gameObject.CompareTag("projectile"))
         {
+            Debug.Log("Hit me baby one more time");
             Hit();
         }
+        Debug.Log("Oops I did it again " + collider.gameObject.tag);
     }
 
     ////////////////////////////////////////////////////////////

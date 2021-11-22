@@ -24,6 +24,8 @@ public class BaseTower : MonoBehaviour
         _targetingSystem = GetComponent<TargetingSystem>();
         GameObject child = new GameObject();
         child.transform.parent = this.transform;
+        child.name = "Range Detector";
+        child.transform.position = transform.position;
         RangeDetection rangeDetector = child.AddComponent<RangeDetection>();
         rangeDetector.setRange(_range);
         rangeDetector.OnObjectDetected += objectDetected;
@@ -64,7 +66,8 @@ public class BaseTower : MonoBehaviour
                 velocity = _targetingSystem.getVelocity(_target.transform.position, transform.position);
             if (_projectile != null)
             {
-                GameObject go = Instantiate(_projectile, transform);
+                Debug.Log(velocity);
+                GameObject go = Instantiate(_projectile, transform.position, Quaternion.identity, transform);
                 go.GetComponent<BaseProjectile>().Move(velocity);                
             }
         }

@@ -22,7 +22,7 @@ public class RangeDetection : MonoBehaviour
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
-        //if (collision.gameObject.CompareTag("bloon"))
+        if (collision.gameObject.CompareTag("bloon"))
         {
             OnObjectDetected(collision.gameObject);
         }
