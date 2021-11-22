@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Projectile.unity
+    guid: c95f9f14861d0f74bae33ff6bb0da18f
   m_configObjects: {}

@@ -11,7 +11,7 @@ public abstract class BaseProjectile : MonoBehaviour
     [SerializeField] protected Rigidbody2D m_Rigidbody2D;
     [SerializeField] protected int m_Damage;
     private float m_Timer;
-
+  
     public virtual void Awake()
     {
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
