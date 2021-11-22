@@ -23,11 +23,11 @@ namespace Tests
         public IEnumerator BaseTowerFireTest()
         {
             GameObject go = new GameObject();
-            go.AddComponent<TargetingSystem>();
             BaseTower _baseTower = go.AddComponent<BaseTower>();
             GameObject target = new GameObject();
             target.AddComponent<Rigidbody2D>();
             target.AddComponent<CircleCollider2D>();
+            target.tag = "bloon";
             target.transform.position = new Vector3(0.5f, 0.5f);
             target.transform.position += new Vector3(-0.5f, -0.5f);
 

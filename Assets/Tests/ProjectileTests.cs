@@ -14,27 +14,31 @@ namespace Tests
             [SetUp]
             public void SetUp()
             {
-                GameObject firetest = MonoBehaviour.Instantiate(Resources.Load<GameObject>("Prefabs/TestFire"));
+                firetest = MonoBehaviour.Instantiate(Resources.Load<GameObject>("Prefabs/TestFire"), new Vector3(0,0), Quaternion.identity);
                 testFire = firetest.GetComponent<TestFire>();
             }
 
-            [UnityTest]
-            public IEnumerator MoveTest()
-            {        
-                testFire.spawnProjectile(new Vector2(1,1));
-                GameObject projectile = testFire.getprojectile();
-                yield return new WaitForSeconds(1.1f);
-                UnityEngine.Assertions.Assert.IsNull(projectile);
-            }
+        
 
-            [UnityTest]
-            public IEnumerator CollisionTest()
-            {   
-                MonoBehaviour.Instantiate(Resources.Load<GameObject>("Prefabs/Obstacle"), new Vector2(3, 0), Quaternion.identity);
-                testFire.spawnProjectile(new Vector2(1,0));
-                GameObject projectile = testFire.getprojectile();
-                yield return new WaitForSeconds(0.5f);
-                UnityEngine.Assertions.Assert.IsNull(projectile);
-            }
+        [UnityTest]
+        public IEnumerator CollisionTest()
+        {   
+            MonoBehaviour.Instantiate(Resources.Load<GameObject>("Prefabs/Obstacle"), new Vector2(6, 0), Quaternion.identity);
+            GameObject projectile = testFire.spawnProjectile(new Vector2(1,0));
+            yield return new WaitForSeconds(0.5f);
+            UnityEngine.Assertions.Assert.IsNull(projectile);
         }
+
+        [UnityTest]
+        public IEnumerator MoveTest()
+        {
+            GameObject projectile = testFire.spawnProjectile(new Vector2(-1, 0  ));
+            Vector3 pos = projectile.transform.position;
+            // set projectile lifetimer higher thgan new wait for seconds.
+            yield return new WaitForSeconds(0.5f);
+            Vector2 newPos = projectile.transform.position;
+            UnityEngine.Assertions.Assert.IsTrue(pos != projectile.transform.position);
+
+        }
+    }
 }
