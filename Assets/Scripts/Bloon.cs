@@ -73,10 +73,8 @@ public class Bloon : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("projectile"))
         {
-            Debug.Log("Hit me baby one more time");
             Hit();
         }
-        Debug.Log("Oops I did it again " + collider.gameObject.tag);
     }
 
     ////////////////////////////////////////////////////////////
