@@ -5,7 +5,7 @@ using UnityEngine;
 public class BaseTower : MonoBehaviour
 {
     float _waitToFire;
-    public float _reloadTime;
+    public float _reloadTime = 1;
     public float _range;
     GameObject _target;
     TargetingSystem _targetingSystem;
@@ -50,9 +50,16 @@ public class BaseTower : MonoBehaviour
     {
         if (_waitToFire <= 0)
         {
+            Vector2 velocity;
             _waitToFire = _reloadTime;
-            Vector2 velocity = _targetingSystem.getVelocity(_target.transform.position, transform.position);
+            if (_target != null)
+                velocity = _targetingSystem.getVelocity(_target.transform.position, transform.position);
             // pass velocity to bullet
         }
+    }
+
+    public float getWaitTime()
+    {
+        return _waitToFire;
     }
 }
