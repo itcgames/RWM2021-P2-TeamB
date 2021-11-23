@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestFire : MonoBehaviour
+public class CannonTestFire : TestFire
 {
-    public GameObject testprojectile;
+   /* public GameObject testprojectile;
     public Vector2 dir;
     [HideInInspector] public GameObject currentProjectile;
     void Update()
@@ -20,5 +20,5 @@ public class TestFire : MonoBehaviour
         currentProjectile = Instantiate(testprojectile, this.gameObject.transform.position, Quaternion.identity);
         currentProjectile.GetComponent<TestProjectile>().Move(newdir);
         return currentProjectile;
-    }
+    }*/
 }

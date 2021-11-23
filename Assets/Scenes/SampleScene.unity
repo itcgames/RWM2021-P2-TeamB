@@ -328,6 +328,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _reloadTime: 1
   _range: 0
+  _projectile: {fileID: 0}
 --- !u!212 &1937990785
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -386,7 +387,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1937990783}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.29021144, y: 0.7300813, z: 0.71110284}
+  m_LocalPosition: {x: 0.29021144, y: 0.7300813, z: -2.069}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
