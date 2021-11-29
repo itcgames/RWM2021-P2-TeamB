@@ -127,6 +127,13 @@
         "com.unity.modules.imgui": "1.0.0"
       }
     },
+    "ie.itcarlow.pathingsystem": {
+      "version": "https://github.com/itcgames/RWM-PathingSystem.git?path=/Packages/ie.itcarlow.pathingsystem",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "33009a9bc05cabed8448b6f111e0b813a51a534b"
+    },
     "com.unity.modules.ai": {
       "version": "1.0.0",
       "depth": 0,
