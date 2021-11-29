@@ -43,6 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06ebc0b3866bc9a41935aa9677fd3374, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testprojectile: {fileID: 4419464618979366644, guid: 312a05fece401614a8607300d916e8e1,
+  testprojectile: {fileID: 4419464618979366644, guid: 14a28d8aa9e88494781eb3c3147c1cf5,
     type: 3}
   dir: {x: 1, y: 1}
+  currentProjectile: {fileID: 0}

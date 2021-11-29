@@ -35,7 +35,6 @@ public abstract class BaseProjectile : MonoBehaviour
         }
         else if(other.CompareTag("obstacle"))
         {
-            Debug.Log("aa");
             Destroy(this.gameObject);
         }
     }
