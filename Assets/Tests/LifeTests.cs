@@ -34,5 +34,14 @@ namespace Tests
                 yield return new WaitForSeconds(.5f);
                 UnityEngine.Assertions.Assert.IsFalse(text == lifeComponent.lifeText.text);
             }
+
+            [UnityTest]
+            public IEnumerator LoseGame()
+            {        
+                string text = lifeComponent.lifeText.text;
+                lifeComponent.removeLife(100);
+                yield return new WaitForSeconds(.5f);
+                UnityEngine.Assertions.Assert.IsTrue(lifeComponent.gameOverScreen.activeInHierarchy);
+            }
         }
 }

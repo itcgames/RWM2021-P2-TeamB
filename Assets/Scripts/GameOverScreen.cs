@@ -10,4 +10,15 @@ public class GameOverScreen : MonoBehaviour
         Scene scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(scene.name);
     }
+
+    public void QuitToMainMenu()
+    {
+        //TODO: add main menu scene number or name
+        // SceneManager.LoadScene(scene.name);
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
+    }
 }

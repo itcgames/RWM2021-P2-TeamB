@@ -7,7 +7,7 @@ public class Life : MonoBehaviour
 {
     [SerializeField] public Text lifeText;
     [SerializeField] public int maxLives;
-    [SerializeField] private GameObject gameOverScreen;
+    [SerializeField] public GameObject gameOverScreen;
     [HideInInspector] public int currentLives;
 
     void Start()
