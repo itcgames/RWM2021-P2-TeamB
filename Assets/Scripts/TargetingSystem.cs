@@ -12,7 +12,6 @@ public class TargetingSystem : MonoBehaviour
 
     public int getQuadrant(Vector2 t_velocity)
     {
-        //
-        return (int)(((Mathf.Atan2(t_velocity.y, t_velocity.x) * 180 / Mathf.PI) + 180) / 45);
+        return (int)(((Mathf.Atan2(t_velocity.y, t_velocity.x) * 180 / Mathf.PI) + 180) / 60);
     }
 }
