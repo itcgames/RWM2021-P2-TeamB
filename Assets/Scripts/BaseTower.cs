@@ -66,7 +66,7 @@ public class BaseTower : MonoBehaviour
                 velocity = _targetingSystem.getVelocity(_target.transform.position, transform.position);
             if (_projectile != null)
             {
-                Debug.Log(Mathf.Atan2(velocity.y, velocity.x) * 180 / Mathf.PI);
+                //Debug.Log(Mathf.Atan2(velocity.y, velocity.x) * 180 / Mathf.PI);
                 GameObject go = Instantiate(_projectile, transform.position, Quaternion.identity, transform);
                 go.GetComponent<BaseProjectile>().Move(velocity);                
             }

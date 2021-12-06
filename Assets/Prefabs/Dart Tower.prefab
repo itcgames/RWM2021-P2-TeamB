@@ -59,9 +59,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _reloadTime: 1
-  _range: 1
-  _projectile: {fileID: 0}
---- !u!95 &3545069427861021260
+  _range: 3
+  _projectile: {fileID: 7589157858075080956, guid: 91b8aba6078a90f4f9bf7017a021163d,
+    type: 3}
+--- !u!95 &4152540718952197228
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0

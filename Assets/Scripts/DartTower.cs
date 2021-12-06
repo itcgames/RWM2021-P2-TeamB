@@ -33,17 +33,12 @@ public class DartTower : BaseTower
 
     private void Update()
     {
-        if (_waitToFire > 0)
+        if (_waitToFire > -0.1f)
             _waitToFire -= Time.deltaTime;
-        
-        if (_target)
-        {
-            //float angle = Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg + 90;
-            //transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, angle);
-        }
         else
         {
             _animator.SetTrigger("Idle");
+            _animator.SetInteger("attackAngle", -1);
         }
     }
 
