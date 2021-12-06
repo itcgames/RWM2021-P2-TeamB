@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "bloons.objectplacement": {
+      "version": "https://github.com/HansMeulblok/Object-Placement-Unity.git?path=/Object%20Placement/Packages/bloons.objectplacement",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "233faca588374cdc3dc61bfff733005d30cff37b"
+    },
     "com.unity.2d.common": {
       "version": "2.1.0",
       "depth": 1,
@@ -126,6 +133,13 @@
         "com.unity.modules.ui": "1.0.0",
         "com.unity.modules.imgui": "1.0.0"
       }
+    },
+    "ie.itcarlow.pathingsystem": {
+      "version": "https://github.com/itcgames/RWM-PathingSystem.git?path=/Packages/ie.itcarlow.pathingsystem",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "33009a9bc05cabed8448b6f111e0b813a51a534b"
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",
