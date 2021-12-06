@@ -6,7 +6,7 @@ using UnityEngine.TestTools;
 
 namespace Tests
 {
-    public class CannonTowerTests
+    public class CannonTowerTest
     {
         [UnityTest]
         public IEnumerator CannonTowerReloadTest()
