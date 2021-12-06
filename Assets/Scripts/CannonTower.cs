@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CannonTestFire : TestFire
+public class CannonTower : BaseTower
 {
    
 }

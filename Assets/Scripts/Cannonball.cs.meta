@@ -3,7 +3,10 @@ guid: d7df6e7d7d4a4444798e09a062ca8fa0
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - m_Rigidbody2D: {instanceID: 0}
+  - _explosion: {fileID: 8622413713362279621, guid: c378e3f3062f1fb4bb71034220212df4,
+      type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

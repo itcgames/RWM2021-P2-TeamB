@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 8389117162690119423}
   - component: {fileID: 610010076559742302}
   - component: {fileID: -3915154958796665710}
-  - component: {fileID: 2237854110612057195}
   m_Layer: 0
   m_Name: TestCannonball
   m_TagString: cannonball
@@ -134,25 +133,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7df6e7d7d4a4444798e09a062ca8fa0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ProjectileSpeed: 25
+  m_ProjectileSpeed: 15
   m_LifeTime: 3
   m_Rigidbody2D: {fileID: 0}
   m_Damage: 1
   _explosion: {fileID: 8622413713362279621, guid: c378e3f3062f1fb4bb71034220212df4,
     type: 3}
---- !u!114 &2237854110612057195
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8389117162690119416}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16be3166c68244043a55e8a18f615063, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ProjectileSpeed: 25
-  m_LifeTime: 3
-  m_Rigidbody2D: {fileID: 0}
-  m_Damage: 1
