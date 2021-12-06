@@ -17,7 +17,8 @@ public class CBExplosion : MonoBehaviour
 
         if(other.CompareTag("bloon"))
         {
-           // other.GetComponent<Bloon>().Hit();
+            //other.GetComponent<Bloon>().Hit();
+             Destroy(other.gameObject);
         }
         else if(other.CompareTag("obstacle"))
         {
