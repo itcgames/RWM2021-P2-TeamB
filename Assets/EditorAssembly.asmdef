@@ -1,7 +1,8 @@
 {
     "name": "EditorAssembly",
     "references": [
-        "PathingEditorAssembly"
+        "PathingEditorAssembly",
+        "ObjectPlacement"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
