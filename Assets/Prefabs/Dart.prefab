@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2089367462290991758}
   m_Layer: 0
   m_Name: Dart
-  m_TagString: Untagged
+  m_TagString: projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -68,7 +68,7 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.009540862, y: -0.0466933}
+  m_Offset: {x: -0.009540862, y: 0.04}
   m_Size: {x: 0.5383007, y: 0.23841882}
   m_Direction: 1
 --- !u!114 &2089367462290991758
