@@ -11,7 +11,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Buildweek1.unity
     guid: 692786cd12ca4ec4f9368b054a1f4740
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Buildweek2.unity
     guid: 2613b3ddf01b74240b48b1bbc7d1829b
+  - enabled: 1
+    path: Assets/Scenes/Buildweek3.unity
+    guid: d3851462c2f63934ca40a3a6db020ea3
   m_configObjects: {}
