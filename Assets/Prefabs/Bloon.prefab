@@ -47,6 +47,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _currentTier: 0
+  path: {fileID: 0}
+  duration: 20
 --- !u!50 &6604589372518588534
 Rigidbody2D:
   serializedVersion: 4

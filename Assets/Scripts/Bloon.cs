@@ -23,8 +23,8 @@ public class Bloon : MonoBehaviour
         { 0, new Tier(1.0f, Color.red) },
         { 1, new Tier(1.4f, new Color(0.4f,0.4f,1.0f)) },
         { 2, new Tier(1.8f, Color.green) },
-        { 3, new Tier(3.2f, Color.yellow) },
-        { 4, new Tier(3.5f, new Color(1.0f,0.5f,0.75f)) }
+        { 3, new Tier(2.2f, Color.yellow) },
+        { 4, new Tier(2.6f, new Color(1.0f,0.5f,0.75f)) }
     };
 
     [Tooltip("Sets the tier of the bloon: MIN 0, MAX 4")]
@@ -33,6 +33,11 @@ public class Bloon : MonoBehaviour
     private Rigidbody2D _rb;
     private SpriteRenderer _spr;
 
+    public BezierSpline path;
+    public float duration;
+
+    private float progress;
+
     // Unit vector representing our velocity
     private Vector2 _velocity = new Vector2 { x = 0.5f, y = 0.0f }; // TODO: Change this; set to 0.5,0 for testing.
 
@@ -40,6 +45,7 @@ public class Bloon : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody2D>();
         _spr = GetComponent<SpriteRenderer>();
+        path = GameObject.FindObjectOfType<BezierSpline>();
 
         Spawn(_currentTier);
     }
@@ -64,7 +70,15 @@ public class Bloon : MonoBehaviour
     private void FixedUpdate()
     {
         float speed = _bloonTiers[_currentTier].speed;
-        _rb.velocity = _velocity * speed;
+        progress += Time.deltaTime * speed / duration;
+        transform.localPosition = path.GetPoint(progress);
+
+        // Completed the path
+        if (progress > 1f)
+        {
+            GameObject.FindObjectOfType<Life>().removeLife(1);
+            Pop();
+        }
     }
 
     ////////////////////////////////////////////////////////////
