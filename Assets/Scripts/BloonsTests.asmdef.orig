@@ -2,8 +2,11 @@
     "name": "BloonsTests",
     "references": [
         "GUID:6055be8ebefd69e48b49212b09b47b2f",
-        "GUID:2fe77d6cd936e634fa41542b9c4f4243",
+<<<<<<< HEAD
+        "GUID:2fe77d6cd936e634fa41542b9c4f4243"
+=======
         "GUID:e8bff9e235145bd43910b52b9fe04332"
+>>>>>>> 6bd240c (Added money, placeable towers and purchase menu)
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
