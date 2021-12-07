@@ -12,7 +12,7 @@ public class RangeUpgrade : Ability
         Debug.Log("Upgrade");
         int level = caller.GetComponent<EntityLeveling>().getLevel();
         BaseTower tower = caller.GetComponent<DartTower>();
-        if (level < rangePerLevel.Length)
-            tower.upgradeRange(rangePerLevel[level]);
+        if (level < rangePerLevel.Length + 2)
+            tower.upgradeRange(rangePerLevel[level - 2]);
     }
 }

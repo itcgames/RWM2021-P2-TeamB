@@ -12,7 +12,7 @@ public class RateOfFireUpgrade : Ability
         Debug.Log("Upgrade");
         int level = caller.GetComponent<EntityLeveling>().getLevel();
         BaseTower tower = caller.GetComponent<DartTower>();
-        if (level < reloadTimePerLevel.Length)
-            tower.upgradeFireRate(reloadTimePerLevel[level]);
+        if (level < reloadTimePerLevel.Length + 2)
+            tower.upgradeFireRate(reloadTimePerLevel[level - 2]);
     }
 }
