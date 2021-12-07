@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DartTower : BaseTower
 {
-
+    float _speed = 1;
     Animator _animator;
 
     private void Start()
@@ -25,7 +25,7 @@ public class DartTower : BaseTower
             if (_projectile != null)
             {
                 GameObject go = Instantiate(_projectile, transform.position, Quaternion.identity);
-                go.GetComponent<BaseProjectile>().Move(velocity);
+                go.GetComponent<BaseProjectile>().Move(velocity * _speed);
             }
         }
     }

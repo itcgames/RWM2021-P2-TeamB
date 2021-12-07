@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "amazing.aaron.levelingsystem": "https://github.com/itcgames/RWM-LevelingSystem.git?path=Level%20System/Packages/amazing.aaron.levelingsystem",
     "bloons.objectplacement": "https://github.com/HansMeulblok/Object-Placement-Unity.git?path=/Object%20Placement/Packages/bloons.objectplacement",
     "com.unity.2d.sprite": "1.0.0",
     "com.unity.2d.spriteshape": "3.0.17",
