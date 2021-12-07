@@ -11,8 +11,11 @@ GameObject:
   - component: {fileID: 3545069427861021259}
   - component: {fileID: 3545069427861021258}
   - component: {fileID: 3545069427861021261}
-  - component: {fileID: 3545069427861021260}
   - component: {fileID: 3545069427861021263}
+  - component: {fileID: 4152540718952197228}
+  - component: {fileID: 289598500}
+  - component: {fileID: 289598499}
+  - component: {fileID: 962376121352387858}
   m_Layer: 0
   m_Name: Dart Tower
   m_TagString: Untagged
@@ -59,28 +62,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _reloadTime: 1
-  _range: 3
-  _projectile: {fileID: 7589157858075080956, guid: 91b8aba6078a90f4f9bf7017a021163d,
+  _range: 1
+  _projectile: {fileID: 2089367462290991759, guid: e1affd0a13a5fc14b99ec329ee885adc,
     type: 3}
---- !u!95 &4152540718952197228
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3545069427861021262}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 3951508412dfdd74b96b67a8d0cb5027, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!212 &3545069427861021263
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -131,3 +115,80 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &4152540718952197228
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3545069427861021262}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3951508412dfdd74b96b67a8d0cb5027, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &289598500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3545069427861021262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b565522f9694684a82519b2c6828014, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _MAX_LEVEL: 4
+  _levelAbilities:
+  - _boundLevel: 2
+    _ability: {fileID: 289598499}
+  - _boundLevel: 3
+    _ability: {fileID: 289598499}
+  - _boundLevel: 4
+    _ability: {fileID: 289598499}
+  - _boundLevel: 2
+    _ability: {fileID: 962376121352387858}
+  - _boundLevel: 3
+    _ability: {fileID: 962376121352387858}
+  - _boundLevel: 4
+    _ability: {fileID: 962376121352387858}
+--- !u!114 &289598499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3545069427861021262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13de5956a0bda33499ab5486818c22bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rangePerLevel:
+  - 2
+  - 4
+  - 8
+--- !u!114 &962376121352387858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3545069427861021262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f1bba6a076d4964f80cd88cbdde17c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  reloadTimePerLevel:
+  - 0.5
+  - 0.25
+  - 0.1

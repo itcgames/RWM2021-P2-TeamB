@@ -28,10 +28,9 @@ public class BaseTower : MonoBehaviour
         child.transform.parent = this.transform;
         child.name = "Range Detector";
         child.transform.position = transform.position;
-        RangeDetection rangeDetector = child.AddComponent<RangeDetection>();
-        rangeDetector.setRange(_range);
-        rangeDetector.OnObjectDetected += Fire;
-        _targetSystem = transform.GetChild(0).GetComponent<RangeDetection>();
+        _targetSystem = child.AddComponent<RangeDetection>();
+        _targetSystem.setRange(_range);
+        _targetSystem.OnObjectDetected += Fire;
     }
 
     private void OnDisable()
@@ -68,6 +67,17 @@ public class BaseTower : MonoBehaviour
                 go.GetComponent<BaseProjectile>().Move(velocity);                
             }
         }
+    }
+
+    public virtual void upgradeRange(float t_range)
+    {
+        _range = t_range;
+        _targetSystem.setRange(t_range);
+    }
+
+    public virtual void upgradeFireRate(float t_rate)
+    {
+        _reloadTime = t_rate;
     }
 
     public float getWaitTime()
