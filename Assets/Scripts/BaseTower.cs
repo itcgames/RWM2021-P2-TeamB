@@ -58,8 +58,8 @@ public class BaseTower : MonoBehaviour
         {
             Vector2 velocity = new Vector2();
             _waitToFire = _reloadTime;
-            if (_targetSystem.targets[0] != null)
-                velocity = _targetingSystem.getVelocity(_target.transform.position, transform.position);
+            //if (_targetSystem.targets[0] != null)
+                //velocity = _targetingSystem.getVelocity(_target.transform.position, transform.position);
             if (_projectile != null)
             {
                 //Debug.Log(Mathf.Atan2(velocity.y, velocity.x) * 180 / Mathf.PI);
