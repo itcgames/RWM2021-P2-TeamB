@@ -22,8 +22,6 @@ public class SpawnController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // This call is for testing; should be called through in-game button press
-        StartWave();
     }
 
     /// <summary>

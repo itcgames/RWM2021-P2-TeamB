@@ -11,18 +11,25 @@ public enum State
 
 public class GameState : MonoBehaviour
 {
+    [HideInInspector]
     public State _currentState = State.PreRound;
-    [SerializeField] GameObject[] _objects;
+    [SerializeField] GameObject _path;
     [SerializeField] Text _text;
+    SpawnController _spawnController;
+
+    void Start()
+    {
+        _spawnController = GetComponent<SpawnController>(); 
+    }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            foreach(var obj in _objects)
-                obj.SetActive(true);
+            _path.SetActive(true);
             _text.text = "Game Status: Playing";
             _currentState = State.Playing;
+            _spawnController.StartWave();
         }
     }
 }

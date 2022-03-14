@@ -56,7 +56,6 @@ public class TowerPlacer : MonoBehaviour
             if (cost <= _moneyManager.balance)
             {
                 _moneyManager.balance -= cost;
-                Debug.Log(_moneyManager.balance);  
                 Instantiate(_currentTower, _point, Quaternion.identity);
             }
         }

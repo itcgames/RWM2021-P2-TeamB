@@ -174,7 +174,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -10, y: -10}
+  m_AnchoredPosition: {x: -91.83002, y: -21.900024}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 1, y: 1}
 --- !u!222 &1008759023
@@ -795,6 +795,8 @@ GameObject:
   - component: {fileID: 2038223633}
   - component: {fileID: 1081986260}
   - component: {fileID: 1081986261}
+  - component: {fileID: 1231749948}
+  - component: {fileID: 234780168}
   m_Layer: 0
   m_Name: LifeSystem
   m_TagString: GameController
@@ -857,9 +859,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90fc0d391649b3549a6f018c9c34321e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _currentState: 0
   _objects:
   - {fileID: 0}
   - {fileID: 0}
+  _text: {fileID: 5669764980211394730}
 --- !u!114 &1081986261
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -872,8 +876,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ee319f464d73c448a87bad41959f766, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dartTower: {fileID: 3545069427861021262, guid: d660dbdbf1a4e3b4b9df49ca9f0d5761,
-    type: 3}
+  towers:
+  - {fileID: 3545069427861021262, guid: d660dbdbf1a4e3b4b9df49ca9f0d5761, type: 3}
+--- !u!114 &1231749948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2968290796537534433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65d2c5e6464195d4da7ab506acdeb8a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &234780168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2968290796537534433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d174652615afd4c41aae34654bf48787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 4834011245702557383, guid: 8b7b5ce535225cf48a1df35b9f3f65c8, type: 3}
+  _waveSize: 30
+  _waveDuration: 10
 --- !u!1 &8486904429177998579
 GameObject:
   m_ObjectHideFlags: 0

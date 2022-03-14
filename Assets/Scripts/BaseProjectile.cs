@@ -10,11 +10,13 @@ public abstract class BaseProjectile : MonoBehaviour
     [SerializeField] protected float m_LifeTime;
     [SerializeField] protected Rigidbody2D m_Rigidbody2D;
     [SerializeField] protected int m_Damage;
+    [SerializeField] protected MoneyManager _moneyManager;
     private float m_Timer;
 
     public virtual void Awake()
     {
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
+        _moneyManager = GameObject.Find("GameManager").GetComponent<MoneyManager>();
     }
      
     public virtual void Update()
@@ -31,6 +33,7 @@ public abstract class BaseProjectile : MonoBehaviour
         if(other.CompareTag("bloon"))
         {
             //other.GetComponent<Bloon>().hit();
+            _moneyManager.balance++;
             Destroy(this.gameObject);
         }
         else if(other.CompareTag("obstacle"))
