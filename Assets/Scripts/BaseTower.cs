@@ -10,7 +10,10 @@ public class BaseTower : MonoBehaviour
     [SerializeField] protected float _reloadTime = 1;
 
     [Tooltip("how far the tower can see")] 
-    [SerializeField] protected float _range = 1; 
+    [SerializeField] protected float _range = 1;
+
+    [Tooltip("How much it costs to place the tower")]
+    public int cost = 100;
 
     protected GameObject _target; // object I'm firing at 
     protected TargetingSystem _targetingSystem;
@@ -35,7 +38,7 @@ public class BaseTower : MonoBehaviour
 
     private void OnDisable()
     {
-        transform.GetChild(0).GetComponent<RangeDetection>().OnObjectDetected -= Fire;
+        transform.GetChild(1).GetComponent<RangeDetection>().OnObjectDetected -= Fire;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
