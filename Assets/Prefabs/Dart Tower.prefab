@@ -62,7 +62,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _reloadTime: 1
-  _range: 1
+  _range: 4
   _projectile: {fileID: 2089367462290991759, guid: e1affd0a13a5fc14b99ec329ee885adc,
     type: 3}
 --- !u!212 &3545069427861021263
@@ -173,9 +173,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rangePerLevel:
-  - 2
+  - 3
   - 4
-  - 8
+  - 6
 --- !u!114 &962376121352387858
 MonoBehaviour:
   m_ObjectHideFlags: 0

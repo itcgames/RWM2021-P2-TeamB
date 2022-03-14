@@ -133,6 +133,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Blue Bloon
       objectReference: {fileID: 0}
+    - target: {fileID: 4834011245702557383, guid: 8b7b5ce535225cf48a1df35b9f3f65c8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6988375257926108811, guid: 8b7b5ce535225cf48a1df35b9f3f65c8,
         type: 3}
       propertyPath: _currentTier
@@ -202,14 +207,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 289598499, guid: d660dbdbf1a4e3b4b9df49ca9f0d5761, type: 3}
-      propertyPath: rangePerLevel.Array.data[0]
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 289598499, guid: d660dbdbf1a4e3b4b9df49ca9f0d5761, type: 3}
-      propertyPath: rangePerLevel.Array.data[2]
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 3545069427861021259, guid: d660dbdbf1a4e3b4b9df49ca9f0d5761,
         type: 3}
       propertyPath: m_RootOrder
@@ -268,7 +265,7 @@ PrefabInstance:
     - target: {fileID: 3545069427861021261, guid: d660dbdbf1a4e3b4b9df49ca9f0d5761,
         type: 3}
       propertyPath: _range
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3545069427861021262, guid: d660dbdbf1a4e3b4b9df49ca9f0d5761,
         type: 3}
@@ -300,6 +297,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Yellow Bloon
+      objectReference: {fileID: 0}
+    - target: {fileID: 4834011245702557383, guid: 8b7b5ce535225cf48a1df35b9f3f65c8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6988375257926108811, guid: 8b7b5ce535225cf48a1df35b9f3f65c8,
         type: 3}
@@ -619,6 +621,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Green Bloon
       objectReference: {fileID: 0}
+    - target: {fileID: 4834011245702557383, guid: 8b7b5ce535225cf48a1df35b9f3f65c8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6988375257926108811, guid: 8b7b5ce535225cf48a1df35b9f3f65c8,
         type: 3}
       propertyPath: _currentTier
@@ -785,6 +792,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pink Bloon
       objectReference: {fileID: 0}
+    - target: {fileID: 4834011245702557383, guid: 8b7b5ce535225cf48a1df35b9f3f65c8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6988375257926108811, guid: 8b7b5ce535225cf48a1df35b9f3f65c8,
         type: 3}
       propertyPath: _currentTier
@@ -881,17 +893,17 @@ PrefabInstance:
     - target: {fileID: 2968290796537534439, guid: 79fd2601455377049b6e163ed18ca026,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.96658546
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2968290796537534439, guid: 79fd2601455377049b6e163ed18ca026,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.13252214
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2968290796537534439, guid: 79fd2601455377049b6e163ed18ca026,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -6.5144844
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2968290796537534439, guid: 79fd2601455377049b6e163ed18ca026,
         type: 3}

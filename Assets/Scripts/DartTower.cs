@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DartTower : BaseTower
 {
-    float _speed = 1;
+    float _speed = 1f;
     Animator _animator;
 
     private void Start()
