@@ -5,16 +5,25 @@ using UnityEditor;
 
 public class TowerPlacer : MonoBehaviour
 {
+    [SerializeField]
+    [Tooltip("Place the prefab for all the available towers here")]
+    GameObject[] towers;
+
+
+    MoneyManager _moneyManager;
     GameState _gameState;
-    public GameObject dartTower;
+
+    GameObject _currentTower;
 
     int _layerMask;
     float _rayDistance = Mathf.Infinity;
 
     void Start()
     {
+        _moneyManager = GetComponent<MoneyManager>();  
         _gameState = GetComponent<GameState>();
         _layerMask = LayerMask.GetMask("BG");
+        _currentTower = towers[0];
     }
 
     void Update()
@@ -26,7 +35,30 @@ public class TowerPlacer : MonoBehaviour
 
                 if (hit.collider)
                     if (hit.collider.name == "Background")
-                        Instantiate(dartTower, hit.point, Quaternion.identity);
+                        spawn(hit.point);
+                        
             }
+    }
+
+    void SetCurrentTower(int _index)
+    {
+        _currentTower = null;
+        if (_index >= 0)
+            _currentTower = towers[_index];
+    }
+
+
+    void spawn(Vector2 _point)
+    {
+        if (_currentTower)
+        {
+            int cost = _currentTower.GetComponent<BaseTower>().cost;
+            if (cost <= _moneyManager.balance)
+            {
+                _moneyManager.balance -= cost;
+                Debug.Log(_moneyManager.balance);  
+                Instantiate(_currentTower, _point, Quaternion.identity);
+            }
+        }
     }
 }
