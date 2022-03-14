@@ -4,7 +4,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(CircleCollider2D))]
-public class Bloon : MonoBehaviour
+public class Enemy : MonoBehaviour
 {
     private struct Tier
     {
@@ -18,7 +18,7 @@ public class Bloon : MonoBehaviour
         public Color color;
     }
 
-    private static Dictionary<int, Tier> _bloonTiers = new Dictionary<int, Tier>()
+    private static Dictionary<int, Tier> _enemyTiers = new Dictionary<int, Tier>()
     {
         { 0, new Tier(1.0f, Color.red) },
         { 1, new Tier(1.4f, new Color(0.4f,0.4f,1.0f)) },
@@ -41,7 +41,7 @@ public class Bloon : MonoBehaviour
     // Unit vector representing our velocity
     private Vector2 _velocity = new Vector2 { x = 0.5f, y = 0.0f }; // TODO: Change this; set to 0.5,0 for testing.
 
-    private void Start()
+    private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
         _spr = GetComponent<SpriteRenderer>();
@@ -62,14 +62,14 @@ public class Bloon : MonoBehaviour
     private void SetTier(int t_tier)
     {
         _currentTier = t_tier;
-        _spr.color = _bloonTiers[_currentTier].color;
+        _spr.color = _enemyTiers[_currentTier].color;
     }
 
     ////////////////////////////////////////////////////////////
 
     private void FixedUpdate()
     {
-        float speed = _bloonTiers[_currentTier].speed;
+        float speed = _enemyTiers[_currentTier].speed;
         progress += Time.deltaTime * speed / duration;
         transform.localPosition = path.GetPoint(progress);
 
@@ -77,7 +77,7 @@ public class Bloon : MonoBehaviour
         if (progress > 1f)
         {
             GameObject.FindObjectOfType<Life>().removeLife(1);
-            Pop();
+            Kill();
         }
     }
 
@@ -100,12 +100,12 @@ public class Bloon : MonoBehaviour
         if (--_currentTier >= 0)
             SetTier(_currentTier);
         else
-            Pop();
+            Kill();
     }
 
     ////////////////////////////////////////////////////////////
 
-    private void Pop()
+    private void Kill()
     {
         // TODO: Bloon Destroyed
         Destroy(gameObject);
