@@ -42,6 +42,7 @@ public class TrebuchetTower : BaseTower
             Vector2 diff = _targetSystem.targets[0].transform.position - transform.position;
             float angle = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg + 90.0f;
             transform.eulerAngles = new Vector3(0, 0, angle);
+
             Fire();
         }
     }
