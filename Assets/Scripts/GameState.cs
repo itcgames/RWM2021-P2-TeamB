@@ -23,6 +23,8 @@ public class GameState : MonoBehaviour
     {
         _gameData.id = SystemInfo.deviceUniqueIdentifier;
         _gameData.level = 1;
+        _gameData.completion_time = (int)Time.time;
+
         _spawnController = GetComponent<SpawnController>();
     }
 

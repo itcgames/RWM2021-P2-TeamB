@@ -60,7 +60,6 @@ public class SpawnController : MonoBehaviour
 
         _started = false;
         GameState gameState = GetComponent<GameState>();
-        gameState.WaveCleared();
     }
 
     /// <summary>
