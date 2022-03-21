@@ -37,6 +37,7 @@ public class TowerPlacer : MonoBehaviour
         if (_currentTower)
         {
             SpriteRenderer spr = _towerPreview.GetComponent<SpriteRenderer>();
+            spr.color = new Color(1f, 1f, 1f, 0.5f); // Reset the colour to default
 
             RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, _rayDistance, _layerMask);
 
@@ -48,6 +49,11 @@ public class TowerPlacer : MonoBehaviour
                     {
                         spawn(hit.point);
                     }
+                }
+                else
+                {
+                    // Set colour to red as placement is invalid
+                    spr.color = new Color(1f, 0f, 0f, 0.75f);
                 }
             }
 
