@@ -23,7 +23,7 @@ public class GameState : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             _text.text = "Game Status: Playing";
             _currentState = State.Playing;
