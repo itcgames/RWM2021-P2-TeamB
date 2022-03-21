@@ -38,6 +38,7 @@ public class TowerPlacer : MonoBehaviour
 
         _towerPreview = new GameObject();
         _towerPreview.name = "Tower Preview";
+
         SpriteRenderer r = _towerPreview.AddComponent<SpriteRenderer>();
         r.sortingOrder = 1;
 
