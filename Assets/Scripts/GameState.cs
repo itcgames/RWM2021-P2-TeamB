@@ -13,7 +13,6 @@ public class GameState : MonoBehaviour
 {
     [HideInInspector]
     public State _currentState = State.PreRound;
-    [SerializeField] GameObject _path;
     [SerializeField] Text _text;
     SpawnController _spawnController;
 
@@ -26,7 +25,6 @@ public class GameState : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            _path.SetActive(true);
             _text.text = "Game Status: Playing";
             _currentState = State.Playing;
             _spawnController.StartWave();
