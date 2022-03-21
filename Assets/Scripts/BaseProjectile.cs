@@ -8,9 +8,9 @@ public abstract class BaseProjectile : MonoBehaviour
 {
     [SerializeField] protected float m_ProjectileSpeed;
     [SerializeField] protected float m_LifeTime;
-    [SerializeField] protected Rigidbody2D m_Rigidbody2D;
     [SerializeField] protected int m_Damage;
-    [SerializeField] protected MoneyManager _moneyManager;
+    protected Rigidbody2D m_Rigidbody2D;
+    protected MoneyManager _moneyManager;
     private float m_Timer;
 
     public virtual void Awake()
