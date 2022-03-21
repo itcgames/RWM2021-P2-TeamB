@@ -9,27 +9,15 @@ public struct Data
     public string id;
     public int completion_time;
     public int level;
+    public int moneySpent;
+    public int towersBought;
 }
 
-public class MockPostMethod : MonoBehaviour
+public class GameData : MonoBehaviour
 {
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            Data data = new Data();
-            data.id = SystemInfo.deviceUniqueIdentifier;
-            data.completion_time = 100;
-            data.level = 10;
-            StartCoroutine("PostMethod",JsonUtility.ToJson(data));
-        }
-    }
-
-
     public IEnumerator PostMethod(string jsonData)
     {
-
+        Debug.Log("Started");
         string url = "http://52.18.197.119/upload_data";
         using (UnityWebRequest request = UnityWebRequest.Put(url, jsonData))
         {
