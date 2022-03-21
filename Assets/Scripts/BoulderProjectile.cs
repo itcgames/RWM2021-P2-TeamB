@@ -8,6 +8,7 @@ public class BoulderProjectile : BaseProjectile
     Vector3 _target;
     float _initialDistance;
     [SerializeField] float _splashRadius;
+    [SerializeField] GameObject _particles;
     GameObject _aoeSprite;
 
     public override void Awake()
@@ -15,6 +16,14 @@ public class BoulderProjectile : BaseProjectile
         _aoeSprite = transform.GetChild(1).gameObject;
         _aoeSprite.SetActive(false);
         GetComponent<CircleCollider2D>().enabled = false;  
+    }
+
+    void OnDestroy()
+    {
+        GameObject go = Instantiate(_particles, transform.position, Quaternion.identity);
+        Vector3 pos = go.transform.position;
+        pos.z = -1;
+        go.transform.position = pos;
     }
 
     public override void Update()

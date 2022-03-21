@@ -250,3 +250,5 @@ MonoBehaviour:
   m_LifeTime: 10
   m_Damage: 1
   _splashRadius: 0
+  _particles: {fileID: 6843929057914080988, guid: 9874c721e847bf04eb373417efd98e9a,
+    type: 3}

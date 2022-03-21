@@ -42,7 +42,7 @@ public class TowerPlacer : MonoBehaviour
         SpriteRenderer r = _towerPreview.AddComponent<SpriteRenderer>();
         r.sortingOrder = 1;
 
-        SetCurrentTower(0);
+        SetCurrentTower(-1);
     }
 
     void Update()
