@@ -9,6 +9,7 @@ public class BoulderProjectile : BaseProjectile
     float _initialDistance;
     [SerializeField] float _splashRadius;
     GameObject _aoeSprite;
+
     public override void Awake()
     {
         _aoeSprite = transform.GetChild(1).gameObject;
