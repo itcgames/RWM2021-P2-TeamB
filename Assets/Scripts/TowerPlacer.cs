@@ -14,6 +14,7 @@ public class TowerPlacer : MonoBehaviour
     GameState _gameState;
 
     GameObject _currentTower;
+    GameObject _towerPreview;
 
     int _layerMask;
     float _rayDistance = Mathf.Infinity;
@@ -24,27 +25,47 @@ public class TowerPlacer : MonoBehaviour
         _gameState = GetComponent<GameState>();
         _layerMask = LayerMask.GetMask("BG");
         _currentTower = towers[0];
+
+        _towerPreview = new GameObject();
+        _towerPreview.AddComponent<SpriteRenderer>();
+
+        SetCurrentTower(0);
     }
 
     void Update()
     {
-        if (_gameState._currentState == State.PreRound)
-            if (Input.GetMouseButtonDown(0))
-            {
-                RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, _rayDistance, _layerMask);
+        if (_currentTower)
+        {
+            SpriteRenderer spr = _towerPreview.GetComponent<SpriteRenderer>();
 
-                if (hit.collider)
-                    if (hit.collider.name == "Background")
+            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, _rayDistance, _layerMask);
+
+            if (hit.collider)
+            {
+                if (hit.collider.name == "Background")
+                {
+                    if (Input.GetMouseButtonDown(0))
+                    {
                         spawn(hit.point);
-                        
+                    }
+                }
             }
+
+            // Set to mouse position
+            _towerPreview.GetComponent<Transform>().position = hit.point;
+        }
     }
 
     void SetCurrentTower(int _index)
     {
         _currentTower = null;
         if (_index >= 0)
+        {
             _currentTower = towers[_index];
+
+            _towerPreview.GetComponent<SpriteRenderer>().sprite =
+                _currentTower.GetComponent<SpriteRenderer>().sprite;
+        }
     }
 
 
