@@ -3,6 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
+public enum Tower
+{
+    Archer, 
+    Ballista,
+    Mangonel,
+    Trebuchet,
+    Caltrops
+}
+
 public class TowerPlacer : MonoBehaviour
 {
     [SerializeField]
@@ -21,9 +30,10 @@ public class TowerPlacer : MonoBehaviour
 
     void Start()
     {
-        _moneyManager = GetComponent<MoneyManager>();  
+        _moneyManager = GetComponent<MoneyManager>();
         _gameState = GetComponent<GameState>();
         _layerMask = LayerMask.GetMask("BG");
+
         _currentTower = towers[0];
 
         _towerPreview = new GameObject();
@@ -61,8 +71,8 @@ public class TowerPlacer : MonoBehaviour
             _towerPreview.GetComponent<Transform>().position = hit.point;
         }
     }
-
-    void SetCurrentTower(int _index)
+    
+    public void SetCurrentTower(int _index)
     {
         _currentTower = null;
         if (_index >= 0)
@@ -83,6 +93,7 @@ public class TowerPlacer : MonoBehaviour
             if (cost <= _moneyManager.balance)
             {
                 _moneyManager.balance -= cost;
+                _moneyManager.updateText();
                 Instantiate(_currentTower, _point, Quaternion.identity);
             }
         }

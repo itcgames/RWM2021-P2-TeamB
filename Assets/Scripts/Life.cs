@@ -30,7 +30,7 @@ public class Life : MonoBehaviour
 
     public void UpdateText()
     {
-        lifeText.text = $"{currentLives} / {maxLives}";
+        lifeText.text = "Lives: " + $"{currentLives} / {maxLives}";
     }
 
     public void CheckIfDied(int livesLost)
