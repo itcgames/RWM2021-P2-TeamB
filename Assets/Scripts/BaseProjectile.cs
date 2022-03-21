@@ -34,6 +34,7 @@ public abstract class BaseProjectile : MonoBehaviour
         {
             //other.GetComponent<Bloon>().hit();
             _moneyManager.balance++;
+            _moneyManager.updateText();
             Destroy(this.gameObject);
         }
         else if(other.CompareTag("obstacle"))

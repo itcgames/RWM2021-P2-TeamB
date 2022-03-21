@@ -16,18 +16,36 @@ public class GameState : MonoBehaviour
     [SerializeField] Text _text;
     SpawnController _spawnController;
 
+    bool _fastForward = false;
+
     void Start()
     {
         _spawnController = GetComponent<SpawnController>(); 
     }
 
-    private void Update()
+    public void beginGame()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+
+        _text.text = "Game Status: Playing";
+        _currentState = State.Playing;
+        _spawnController.StartWave();
+
+        fastForward();
+
+    }
+
+    public void fastForward()
+    {
+        
+        if (_fastForward)
         {
-            _text.text = "Game Status: Playing";
-            _currentState = State.Playing;
-            _spawnController.StartWave();
+            Time.timeScale = 2;
         }
+        else 
+        {
+            Time.timeScale = 1;
+        }
+
+        _fastForward = !_fastForward;
     }
 }
