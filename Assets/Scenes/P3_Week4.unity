@@ -477,23 +477,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1081986260, guid: 79fd2601455377049b6e163ed18ca026, type: 3}
-      propertyPath: _path
-      value: 
-      objectReference: {fileID: 1990762419}
-    - target: {fileID: 1081986260, guid: 79fd2601455377049b6e163ed18ca026, type: 3}
-      propertyPath: _objects.Array.data[0]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1081986260, guid: 79fd2601455377049b6e163ed18ca026, type: 3}
-      propertyPath: _objects.Array.data[1]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2968290796537534432, guid: 79fd2601455377049b6e163ed18ca026,
-        type: 3}
-      propertyPath: maxLives
-      value: 100
-      objectReference: {fileID: 0}
     - target: {fileID: 2968290796537534433, guid: 79fd2601455377049b6e163ed18ca026,
         type: 3}
       propertyPath: m_Name

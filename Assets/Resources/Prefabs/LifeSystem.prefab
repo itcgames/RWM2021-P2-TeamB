@@ -1810,6 +1810,7 @@ GameObject:
   - component: {fileID: 1081986261}
   - component: {fileID: 1231749948}
   - component: {fileID: 234780168}
+  - component: {fileID: 1241796561}
   m_Layer: 0
   m_Name: LifeSystem
   m_TagString: GameController
@@ -1845,7 +1846,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifeText: {fileID: 82808456}
-  maxLives: 1
+  maxLives: 100
   gameOverScreen: {fileID: 924726943}
   currentLives: 0
 --- !u!114 &2038223633
@@ -1920,6 +1921,18 @@ MonoBehaviour:
   enemy: {fileID: 4834011245702557383, guid: 8b7b5ce535225cf48a1df35b9f3f65c8, type: 3}
   _waveSize: 30
   _waveDuration: 10
+--- !u!114 &1241796561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2968290796537534433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66de8f6e0e8b6494491459255a346a11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8486904429177998579
 GameObject:
   m_ObjectHideFlags: 0

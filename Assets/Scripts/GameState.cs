@@ -23,13 +23,12 @@ public class GameState : MonoBehaviour
     {
         _gameData.id = SystemInfo.deviceUniqueIdentifier;
         _gameData.level = 1;
-        _gameData.completion_time = (int)Time.time;
         _spawnController = GetComponent<SpawnController>();
     }
 
     public void beginGame()
     {
-
+        _gameData.completion_time = (int)Time.time;
         _text.text = "Game Status: Playing";
         _currentState = State.Playing;
         _spawnController.StartWave();
@@ -55,7 +54,8 @@ public class GameState : MonoBehaviour
 
     public void WaveCleared()
     {
-        _gameData.level = 2;
+        SendData();
+        _gameData.level++;
     }
 
     public void SendData()
