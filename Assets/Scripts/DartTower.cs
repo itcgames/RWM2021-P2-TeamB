@@ -44,4 +44,9 @@ public class DartTower : BaseTower
             transform.eulerAngles = new Vector3(0, 0, angle);
         }
     }
+
+    public virtual void OnDisable()
+    {
+        transform.GetChild(1).GetComponent<RangeDetection>().OnObjectDetected -= Fire;
+    }
 }

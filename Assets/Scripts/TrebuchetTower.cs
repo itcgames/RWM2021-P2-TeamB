@@ -4,19 +4,29 @@ using UnityEngine;
 
 public class TrebuchetTower : BaseTower
 {
-    float _speed = 1f;
     Animator _animator;
 
-    void Start()
+    public override void Awake()
     {
-        _animator = GetComponent<Animator>();
+        _range = 5;
+        _reloadTime = 2f;
+        base.Awake();   
     }
 
     public override void Fire()
     {
         if (_waitToFire <= 0)
         {
+            Vector2 target = new Vector2();
 
+            target = _targetSystem.targets[0].transform.position;
+
+            if (_projectile)
+            {    
+                GameObject boulder = Instantiate(_projectile, transform.position, Quaternion.identity);
+                boulder.GetComponent<BoulderProjectile>().Move(target);
+                _waitToFire = _reloadTime;
+            }
         }
     }
 
@@ -32,6 +42,7 @@ public class TrebuchetTower : BaseTower
             Vector2 diff = _targetSystem.targets[0].transform.position - transform.position;
             float angle = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg + 90.0f;
             transform.eulerAngles = new Vector3(0, 0, angle);
+            Fire();
         }
     }
 }

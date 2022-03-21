@@ -24,7 +24,7 @@ public class BaseTower : MonoBehaviour
     protected RangeDetection _targetSystem;
 
 
-    void Awake()
+    public virtual void Awake()
     {
         _targetingSystem = GetComponent<TargetingSystem>();
         GameObject child = new GameObject();
@@ -34,11 +34,6 @@ public class BaseTower : MonoBehaviour
         _targetSystem = child.AddComponent<RangeDetection>();
         _targetSystem.setRange(_range);
         _targetSystem.OnObjectDetected += Fire;
-    }
-
-    private void OnDisable()
-    {
-        transform.GetChild(1).GetComponent<RangeDetection>().OnObjectDetected -= Fire;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
