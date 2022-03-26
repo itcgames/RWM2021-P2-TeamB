@@ -11,7 +11,8 @@ public class BoulderProjectile : BaseProjectile
     [SerializeField] GameObject _particles;
     public override void Awake()
     {
-        GetComponent<CircleCollider2D>().enabled = false;  
+        GetComponent<CircleCollider2D>().enabled = false;
+        base.Awake();
     }
 
     void OnDestroy()
@@ -49,6 +50,9 @@ public class BoulderProjectile : BaseProjectile
     public override void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "bloon")
+        {
+            _moneyManager.gainMoney(1);
             Destroy(other.gameObject);
+        }
     }
 }
