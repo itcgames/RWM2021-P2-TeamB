@@ -9,12 +9,8 @@ public class BoulderProjectile : BaseProjectile
     float _initialDistance;
     [SerializeField] float _splashRadius;
     [SerializeField] GameObject _particles;
-    GameObject _aoeSprite;
-
     public override void Awake()
     {
-        _aoeSprite = transform.GetChild(1).gameObject;
-        _aoeSprite.SetActive(false);
         GetComponent<CircleCollider2D>().enabled = false;  
     }
 
@@ -38,8 +34,8 @@ public class BoulderProjectile : BaseProjectile
         }
         else
         {
-            GetComponent<CircleCollider2D>().enabled = true; 
-            _aoeSprite.SetActive(true);
+            GetComponent<CircleCollider2D>().enabled = true;
+            Destroy(gameObject, 0.05f);
         }
     }
 
@@ -53,9 +49,6 @@ public class BoulderProjectile : BaseProjectile
     public override void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "bloon")
-        {
             Destroy(other.gameObject);
-            Destroy(gameObject, 0.05f);
-        }
     }
 }
