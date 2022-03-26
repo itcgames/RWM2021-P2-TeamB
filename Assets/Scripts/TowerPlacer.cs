@@ -72,6 +72,21 @@ public class TowerPlacer : MonoBehaviour
 
             // Set to mouse position
             _towerPreview.GetComponent<Transform>().position = hit.point;
+
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                _currentTower = null;
+                _towerPreview.SetActive(false);
+            }
+        }
+        else
+        {
+            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, _rayDistance, _layerMask);
+
+            if (hit.collider)
+                if (hit.collider.tag == "Tower")
+                    if (Input.GetMouseButtonDown(0))
+                        GetComponent<TowerManager>().setTower(hit.collider.transform.parent.gameObject);
         }
     }
     
@@ -84,6 +99,8 @@ public class TowerPlacer : MonoBehaviour
 
             _towerPreview.GetComponent<SpriteRenderer>().sprite =
                 _currentTower.GetComponent<SpriteRenderer>().sprite;
+            
+            _towerPreview.SetActive(true);
         }
     }
 

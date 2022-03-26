@@ -38,6 +38,12 @@ public class MoneyManager : MonoBehaviour
         updateText();
     }
 
+    public void soldTower(int t_cost)
+    {
+        _balance += Mathf.RoundToInt(t_cost * 0.7f);
+        updateText();
+    }
+
     public bool inquire(int t_cost)
     {
         return _balance >= t_cost;
