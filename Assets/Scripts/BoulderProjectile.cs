@@ -8,12 +8,19 @@ public class BoulderProjectile : BaseProjectile
     Vector3 _target;
     float _initialDistance;
     [SerializeField] float _splashRadius;
-    GameObject _aoeSprite;
+    [SerializeField] GameObject _particles;
     public override void Awake()
     {
-        _aoeSprite = transform.GetChild(1).gameObject;
-        _aoeSprite.SetActive(false);
-        GetComponent<CircleCollider2D>().enabled = false;  
+        GetComponent<CircleCollider2D>().enabled = false;
+        base.Awake();
+    }
+
+    void OnDestroy()
+    {
+        GameObject go = Instantiate(_particles, transform.position, Quaternion.identity);
+        Vector3 pos = go.transform.position;
+        pos.z = -1;
+        go.transform.position = pos;
     }
 
     public override void Update()
@@ -28,8 +35,8 @@ public class BoulderProjectile : BaseProjectile
         }
         else
         {
-            GetComponent<CircleCollider2D>().enabled = true; 
-            _aoeSprite.SetActive(true);
+            GetComponent<CircleCollider2D>().enabled = true;
+            Destroy(gameObject, 0.05f);
         }
     }
 
@@ -44,8 +51,8 @@ public class BoulderProjectile : BaseProjectile
     {
         if (other.tag == "bloon")
         {
+            _moneyManager.gainMoney(1);
             Destroy(other.gameObject);
-            Destroy(gameObject, 0.05f);
         }
     }
 }
