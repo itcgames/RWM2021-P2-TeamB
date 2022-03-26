@@ -33,7 +33,7 @@ public abstract class BaseProjectile : MonoBehaviour
         if(other.CompareTag("bloon"))
         {
             //other.GetComponent<Bloon>().hit();
-            _moneyManager.balance++;
+            _moneyManager.gainMoney(1);
             _moneyManager.updateText();
             Destroy(this.gameObject);
         }

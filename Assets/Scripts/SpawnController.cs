@@ -17,12 +17,7 @@ public class SpawnController : MonoBehaviour
 
     // Whether or not the wave has started
     private bool _started = false;
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
+    private bool _waveCleared = true;
 
     /// <summary>
     /// Try to begin a wave.
@@ -31,12 +26,29 @@ public class SpawnController : MonoBehaviour
     /// <returns>True if wave was successfully started</returns>
     public bool StartWave()
     {
-        if (!_started)
+        if (!_started && _waveCleared)
             StartCoroutine(Wave());
         else
             return false;
 
         return true;
+    }
+
+    /// <summary>
+    /// Once the wave has been started,
+    /// Check to see when all the bloons are popped 
+    /// </summary>
+    void Update()
+    {
+        if (!_waveCleared && !_started)
+        {
+            if (transform.childCount <= 1)
+            {
+                _waveCleared = true;
+                GameState state = GetComponent<GameState>();
+                state.WaveCleared();
+            }
+        }
     }
 
     /// <summary>
@@ -46,6 +58,7 @@ public class SpawnController : MonoBehaviour
     public IEnumerator Wave()
     {
         _started = true;
+        _waveCleared = false;
 
         int numSpawned = 0;
 
@@ -59,8 +72,6 @@ public class SpawnController : MonoBehaviour
         }
 
         _started = false;
-        GameState gameState = GetComponent<GameState>();
-        gameState.WaveCleared();
     }
 
     /// <summary>

@@ -6,12 +6,22 @@ using UnityEngine.UI;
 public class MoneyManager : MonoBehaviour
 {
     public Text _moneyText;
-    private int _balance;
+    int _balance;
+    int _totalSpent;
+    int _towersPurchased;
 
     void Start()
     {
         _balance = 200;
+        _totalSpent = 0;
+        _towersPurchased = 0;
        
+        updateText();
+    }
+
+    public void gainMoney(int t_gained)
+    {
+        _balance += t_gained;
         updateText();
     }
 
@@ -20,5 +30,26 @@ public class MoneyManager : MonoBehaviour
         _moneyText.text = "Gold: " + $"{_balance}";
     }
 
-    public int balance { get { return _balance; } set { _balance = value; } }
+    public void purchasedTower(int t_cost)
+    {
+        _balance -= t_cost;
+        _totalSpent += t_cost;
+        _towersPurchased += 1;
+        updateText();
+    }
+
+    public bool inquire(int t_cost)
+    {
+        return _balance >= t_cost;
+    }
+
+    public int getTotalSpent()
+    {
+        return _totalSpent;
+    }
+
+    public int getTowersPurchased()
+    {
+        return _towersPurchased;
+    }
 }

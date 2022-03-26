@@ -23,6 +23,8 @@ public class GameState : MonoBehaviour
     {
         _gameData.id = SystemInfo.deviceUniqueIdentifier;
         _gameData.level = 1;
+        _gameData.completion_time = (int)Time.time;
+
         _spawnController = GetComponent<SpawnController>();
     }
 
@@ -60,7 +62,13 @@ public class GameState : MonoBehaviour
 
     public void SendData()
     {
+        MoneyManager money = GetComponent<MoneyManager>();  
+
         _gameData.completion_time = (int)Time.time - _gameData.completion_time;
+        _gameData.moneySpent = money.getTotalSpent();
+        _gameData.towersBought = money.getTowersPurchased();
+        _gameData.livesLeft = GetComponent<Life>().currentLives;
+
         GameData sender = GetComponent<GameData>();
         string gameData = JsonUtility.ToJson(_gameData);
         Debug.Log("Sent: " + gameData);
