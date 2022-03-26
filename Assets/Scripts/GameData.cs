@@ -10,13 +10,13 @@ public struct Data
     public int level;
     public int moneySpent;
     public int towersBought;
+    public int livesLeft;
 }
 
 public class GameData : MonoBehaviour
 {
     public IEnumerator PostMethod(string jsonData)
     {
-
         string url = "http://52.18.197.119/upload_data";
         using (UnityWebRequest request = UnityWebRequest.Put(url, jsonData))
         {

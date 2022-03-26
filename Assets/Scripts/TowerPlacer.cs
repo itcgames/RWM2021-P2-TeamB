@@ -93,10 +93,10 @@ public class TowerPlacer : MonoBehaviour
         if (_currentTower)
         {
             int cost = _currentTower.GetComponent<BaseTower>().cost;
-            if (cost <= _moneyManager.balance)
+            if (_moneyManager.inquire(cost))
             {
-                _moneyManager.balance -= cost;
-                _moneyManager.updateText();
+                _moneyManager.purchasedTower(cost);
+
                 Instantiate(_currentTower, _point, Quaternion.identity);
             }
         }
