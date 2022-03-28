@@ -21,13 +21,16 @@ public class DartTower : BaseTower
         {
             _animator.SetTrigger("Attack");
             Vector2 velocity = new Vector2();
-            _waitToFire = _reloadTime;
-            if (_targetSystem.targets.Count > 0)
-                velocity = _targetingSystem.getVelocity(_targetSystem.targets[0].transform.position, transform.position);
-            if (_projectile != null)
+
+            if (_targetSystem.targets[0] == null) return;
+
+            velocity = _targetingSystem.getVelocity(_targetSystem.targets[0].transform.position, transform.position);
+
+            if (_projectile)
             {
                 GameObject go = Instantiate(_projectile, transform.position, Quaternion.identity);
                 go.GetComponent<BaseProjectile>().Move(velocity * _speed);
+                _waitToFire = _reloadTime;
             }
         }
     }
@@ -41,7 +44,10 @@ public class DartTower : BaseTower
 
         if (_targetSystem.targets.Count > 0)
         {
-            Vector2 diff = _targetSystem.targets[0].transform.position - transform.position;
+            Vector2 diff = new Vector2();
+            if (_targetSystem.targets[0] ?? false)
+                diff = _targetSystem.targets[0].transform.position - transform.position;
+
             float angle = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg + 90.0f;
             transform.eulerAngles = new Vector3(0, 0, angle);
 

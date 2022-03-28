@@ -21,6 +21,13 @@ public class RangeDetection : MonoBehaviour
         transform.localScale = new Vector2(_range, _range);
     }
 
+    private void Update()
+    {
+        foreach (GameObject obj in targets)
+            if (obj == null)
+                targets.Remove(obj);
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "bloon")

@@ -18,6 +18,9 @@ public class TowerManager : MonoBehaviour
     public Text _price;
     public Image _image;
 
+    [SerializeField] Button _fireRateUpgrade;
+    [SerializeField] Button _rangeUpgrade;
+
     public TowerSynposis[] _synopses;
 
     GameObject _currentTower;
@@ -51,6 +54,10 @@ public class TowerManager : MonoBehaviour
         _image.sprite = _currentTower.GetComponent<SpriteRenderer>().sprite;
 
         _price.text = "Sale Price: " + Mathf.RoundToInt(_currentTower.GetComponent<BaseTower>().getCost() * .7f);
+
+        _rangeUpgrade.onClick.AddListener(_currentTower.transform.GetChild(1).GetComponent<EntityLeveling>().levelUp);
+
+        _fireRateUpgrade.onClick.AddListener(_currentTower.transform.GetChild(2).GetComponent<EntityLeveling>().levelUp);
     }
 
     public void sellTower()
@@ -66,7 +73,8 @@ public class TowerManager : MonoBehaviour
     void hide()
     {
         towerStatus.SetActive(false);
-        _currentTower.GetComponent<BaseTower>().hideTargetCirlce();
+        if (_currentTower)
+            _currentTower.GetComponent<BaseTower>().hideTargetCirlce();
         _currentTower = null;
     }
 }
