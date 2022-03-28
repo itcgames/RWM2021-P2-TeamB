@@ -7,8 +7,13 @@ public class SpawnController : MonoBehaviour
     public GameObject enemy;
 
     [SerializeField]
-    [Tooltip("Number of enemies to spawn per wave")]
-    private int _waveSize = 30;
+    [Tooltip("Number of enemies to spawn first wave")]
+    private int _startingWaveSize = 30;
+
+    [SerializeField]
+    [Tooltip("By what factor should our waves increase in size by each wave")]
+    [Range(1.0f, 2.0f)]
+    private float _waveIncrement = 1.2f;
 
     [SerializeField]
     [Tooltip("Time in seconds between spawning the first and last enemy of a wave")]
@@ -19,6 +24,9 @@ public class SpawnController : MonoBehaviour
     private bool _started = false;
     private bool _waveCleared = true;
 
+    // What wave are we currently on
+    private int _wave = 0;
+
     /// <summary>
     /// Try to begin a wave.
     /// Will fail if a wave is already in progress.
@@ -27,9 +35,14 @@ public class SpawnController : MonoBehaviour
     public bool StartWave()
     {
         if (!_started && _waveCleared)
+        {
             StartCoroutine(Wave());
+            _wave++;
+        }
         else
+        {
             return false;
+        }
 
         return true;
     }
@@ -62,13 +75,15 @@ public class SpawnController : MonoBehaviour
 
         int numSpawned = 0;
 
-        while (numSpawned < _waveSize)
+        int toSpawn = (int)(_startingWaveSize * Mathf.Pow(_waveIncrement, (float)_wave));
+
+        while (numSpawned < toSpawn)
         {
             Spawn();
 
             ++numSpawned;
 
-            yield return new WaitForSeconds(_waveDuration / _waveSize);
+            yield return new WaitForSeconds(_waveDuration / toSpawn);
         }
 
         _started = false;
