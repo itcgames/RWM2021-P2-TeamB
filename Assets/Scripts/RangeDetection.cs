@@ -5,8 +5,6 @@ using UnityEngine;
 public class RangeDetection : MonoBehaviour
 {
     private float _range;
-    public delegate void ObjectDetected();
-    public event ObjectDetected OnObjectDetected;
     public List<GameObject> targets;
     
     void Awake()
@@ -21,12 +19,6 @@ public class RangeDetection : MonoBehaviour
         this._range = t_range;
         CircleCollider2D collider = this.gameObject.GetComponent<CircleCollider2D>();
         collider.radius = this._range;
-    }
-
-    void Update()
-    {
-        if (targets.Count > 0)
-            OnObjectDetected();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

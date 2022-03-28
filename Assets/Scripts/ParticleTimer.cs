@@ -6,7 +6,7 @@ public class ParticleTimer : MonoBehaviour
 {
     void Start()
     {
-        float timer = GetComponent<ParticleSystem>().duration;
+        float timer = GetComponent<ParticleSystem>().main.duration;
         Destroy(gameObject, timer);
     }
 }

@@ -15,6 +15,7 @@ public class TowerManager : MonoBehaviour
     public GameObject towerStatus;
     public Text _name;
     public Text _synopsis;
+    public Text _price;
     public Image _image;
 
     public TowerSynposis[] _synopses;
@@ -39,12 +40,14 @@ public class TowerManager : MonoBehaviour
     {
         _currentTower = t_towerObject;
         towerStatus.SetActive(true);
-        _name.text = t_towerObject.GetComponent<BaseTower>().GetType().ToString();
+        _name.text = _currentTower.GetComponent<BaseTower>().GetType().ToString();
 
         foreach (TowerSynposis name in _synopses)
             if (name._name == _name.text)
                 _synopsis.text = name._description;
-        _image.sprite = t_towerObject.GetComponent<SpriteRenderer>().sprite;
+        _image.sprite = _currentTower.GetComponent<SpriteRenderer>().sprite;
+
+        _price.text = "Sale Price: " + Mathf.RoundToInt(_currentTower.GetComponent<BaseTower>().getCost() * .7f);
     }
 
     public void sellTower()
@@ -52,7 +55,7 @@ public class TowerManager : MonoBehaviour
         if (_currentTower)
         {
             towerStatus.SetActive(false);
-            GetComponent<MoneyManager>().soldTower(_currentTower.GetComponent<BaseTower>().cost);
+            GetComponent<MoneyManager>().soldTower(_currentTower.GetComponent<BaseTower>().getCost());
             Destroy(_currentTower);
         }           
     }

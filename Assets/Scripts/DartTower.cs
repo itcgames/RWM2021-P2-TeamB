@@ -7,8 +7,10 @@ public class DartTower : BaseTower
     float _speed = 1f;
     Animator _animator;
 
-    private void Start()
+    public override void Awake()
     {
+        base.Awake();
+        cost = 50;
         _animator = GetComponent<Animator>();
         _animator.SetInteger("attackAngle", 1);
     }
@@ -42,11 +44,8 @@ public class DartTower : BaseTower
             Vector2 diff = _targetSystem.targets[0].transform.position - transform.position;
             float angle = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg + 90.0f;
             transform.eulerAngles = new Vector3(0, 0, angle);
-        }
-    }
 
-    public virtual void OnDisable()
-    {
-        transform.GetChild(1).GetComponent<RangeDetection>().OnObjectDetected -= Fire;
+            Fire();
+        }
     }
 }

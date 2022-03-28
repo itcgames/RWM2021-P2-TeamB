@@ -127,6 +127,9 @@ public class TowerPlacer : MonoBehaviour
                 _moneyManager.purchasedTower(cost);
 
                 Instantiate(_currentTower, _point, Quaternion.identity);
+
+                _currentTower = null;
+                _towerPreview.SetActive(false);
             }
         }
     }
