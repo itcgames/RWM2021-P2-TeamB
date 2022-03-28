@@ -10,7 +10,7 @@ public class TrebuchetTower : BaseTower
     {
         _range = 5;
         _reloadTime = 2f;
-        base.Awake();   
+        base.Awake();
     }
 
     public override void Fire()

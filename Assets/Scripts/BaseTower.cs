@@ -13,7 +13,7 @@ public class BaseTower : MonoBehaviour
     [SerializeField] protected float _range = 1;
 
     [Tooltip("How much it costs to place the tower")]
-    public int cost = 100;
+    public  int cost = 500;
 
     protected GameObject _target; // object I'm firing at 
     protected TargetingSystem _targetingSystem;
@@ -22,7 +22,6 @@ public class BaseTower : MonoBehaviour
     [SerializeField] protected GameObject _projectile; // what im firing
 
     protected RangeDetection _targetSystem;
-
 
     public virtual void Awake()
     {
@@ -34,6 +33,7 @@ public class BaseTower : MonoBehaviour
         _targetSystem = child.AddComponent<RangeDetection>();
         _targetSystem.setRange(_range);
         _targetSystem.OnObjectDetected += Fire;
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

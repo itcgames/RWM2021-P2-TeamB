@@ -110,7 +110,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _reloadTime: 1
   _range: 1
-  cost: 100
+  cost: 125
   _projectile: {fileID: 5699665987164076967, guid: f1c00142bde998c45b1e29fab6fb45b5,
     type: 3}
 --- !u!1 &1883726842021815082
