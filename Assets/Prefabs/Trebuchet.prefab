@@ -113,6 +113,7 @@ MonoBehaviour:
   cost: 125
   _projectile: {fileID: 5699665987164076967, guid: f1c00142bde998c45b1e29fab6fb45b5,
     type: 3}
+  _texture: {fileID: 21300000, guid: 6d583b33b41b5bd4183e988f9592e9a7, type: 3}
 --- !u!1 &1883726842021815082
 GameObject:
   m_ObjectHideFlags: 0

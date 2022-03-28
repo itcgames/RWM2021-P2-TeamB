@@ -11,14 +11,14 @@ public class RangeDetection : MonoBehaviour
     {
         targets = new List<GameObject>();
         CircleCollider2D collider = this.gameObject.AddComponent<CircleCollider2D>();
+        collider.radius = 1;
         collider.isTrigger = true; 
     }
 
     public void setRange(float t_range)
     {
         this._range = t_range;
-        CircleCollider2D collider = this.gameObject.GetComponent<CircleCollider2D>();
-        collider.radius = this._range;
+        transform.localScale = new Vector2(_range, _range);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

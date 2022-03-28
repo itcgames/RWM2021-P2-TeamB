@@ -13,11 +13,7 @@ public class BaseTower : MonoBehaviour
     [SerializeField] protected float _range = 1;
 
     [Tooltip("How much it costs to place the tower")]
-<<<<<<< HEAD
-    public  int cost = 500;
-=======
     public int cost;
->>>>>>> 4bd262b (UI updated (#37))
 
     protected GameObject _target; // object I'm firing at 
     protected TargetingSystem _targetingSystem;
@@ -26,6 +22,11 @@ public class BaseTower : MonoBehaviour
     [SerializeField] protected GameObject _projectile; // what im firing
 
     protected RangeDetection _targetSystem;
+
+    public Sprite _texture;
+    protected SpriteRenderer _targetCircle;
+
+
 
     public virtual void Awake()
     {
@@ -36,20 +37,12 @@ public class BaseTower : MonoBehaviour
         child.transform.position = transform.position;
         _targetSystem = child.AddComponent<RangeDetection>();
         _targetSystem.setRange(_range);
-<<<<<<< HEAD
-        _targetSystem.OnObjectDetected += Fire;
 
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("tower"))
-        {
-            // Block placement
-        }
-=======
-        //_targetSystem.OnObjectDetected += Fire;
->>>>>>> 4bd262b (UI updated (#37))
+        _targetCircle = child.AddComponent<SpriteRenderer>();
+        _targetCircle.sprite = _texture;
+        _targetCircle.color = new Color(1f, 1f, 1f, .5f);
+        _targetCircle.sortingOrder = 1;
+        hideTargetCirlce();
     }
 
     void Update()
@@ -99,5 +92,15 @@ public class BaseTower : MonoBehaviour
     public int getCost()
     {
         return cost;
+    }
+
+    public void showTargetCircle()
+    {
+        _targetCircle.enabled = true;  
+    }
+
+    public void hideTargetCirlce()
+    {
+        _targetCircle.enabled = false;
     }
 }

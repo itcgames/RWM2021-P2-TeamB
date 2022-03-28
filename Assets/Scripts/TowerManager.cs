@@ -31,14 +31,17 @@ public class TowerManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            towerStatus.SetActive(false);
-            _currentTower = null;
+            hide();
         }
     }
 
     public void setTower(GameObject t_towerObject)
     {
+        if (_currentTower)
+            _currentTower.GetComponent<BaseTower>().hideTargetCirlce();
+
         _currentTower = t_towerObject;
+        _currentTower.GetComponent<BaseTower>().showTargetCircle();
         towerStatus.SetActive(true);
         _name.text = _currentTower.GetComponent<BaseTower>().GetType().ToString();
 
@@ -54,9 +57,16 @@ public class TowerManager : MonoBehaviour
     {
         if (_currentTower)
         {
-            towerStatus.SetActive(false);
             GetComponent<MoneyManager>().soldTower(_currentTower.GetComponent<BaseTower>().getCost());
             Destroy(_currentTower);
+            hide();
         }           
+    }
+
+    void hide()
+    {
+        towerStatus.SetActive(false);
+        _currentTower.GetComponent<BaseTower>().hideTargetCirlce();
+        _currentTower = null;
     }
 }
