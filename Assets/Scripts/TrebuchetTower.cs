@@ -8,6 +8,7 @@ public class TrebuchetTower : BaseTower
 
     public override void Awake()
     {
+        //cost = 100;
         _range = 5;
         _reloadTime = 2f;
         base.Awake();

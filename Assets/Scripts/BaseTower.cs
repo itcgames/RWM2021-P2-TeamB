@@ -13,7 +13,11 @@ public class BaseTower : MonoBehaviour
     [SerializeField] protected float _range = 1;
 
     [Tooltip("How much it costs to place the tower")]
+<<<<<<< HEAD
     public  int cost = 500;
+=======
+    public int cost;
+>>>>>>> 4bd262b (UI updated (#37))
 
     protected GameObject _target; // object I'm firing at 
     protected TargetingSystem _targetingSystem;
@@ -32,6 +36,7 @@ public class BaseTower : MonoBehaviour
         child.transform.position = transform.position;
         _targetSystem = child.AddComponent<RangeDetection>();
         _targetSystem.setRange(_range);
+<<<<<<< HEAD
         _targetSystem.OnObjectDetected += Fire;
 
     }
@@ -42,6 +47,9 @@ public class BaseTower : MonoBehaviour
         {
             // Block placement
         }
+=======
+        //_targetSystem.OnObjectDetected += Fire;
+>>>>>>> 4bd262b (UI updated (#37))
     }
 
     void Update()
@@ -86,5 +94,10 @@ public class BaseTower : MonoBehaviour
     public float getReloadTime()
     {
         return _reloadTime;
+    }
+
+    public int getCost()
+    {
+        return cost;
     }
 }

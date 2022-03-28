@@ -1513,18 +1513,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!114 &1202136939 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4588182867010491902, guid: 79fd2601455377049b6e163ed18ca026,
-    type: 3}
-  m_PrefabInstance: {fileID: 1231749946}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1231749946
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1698,41 +1686,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3040762393095291776, guid: 79fd2601455377049b6e163ed18ca026,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6103506802511322526, guid: 79fd2601455377049b6e163ed18ca026,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6103506802511322526, guid: 79fd2601455377049b6e163ed18ca026,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6103506802511322526, guid: 79fd2601455377049b6e163ed18ca026,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1542421560}
-    - target: {fileID: 6103506802511322526, guid: 79fd2601455377049b6e163ed18ca026,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6103506802511322526, guid: 79fd2601455377049b6e163ed18ca026,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: sellTower
-      objectReference: {fileID: 0}
-    - target: {fileID: 6103506802511322526, guid: 79fd2601455377049b6e163ed18ca026,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 79fd2601455377049b6e163ed18ca026, type: 3}
