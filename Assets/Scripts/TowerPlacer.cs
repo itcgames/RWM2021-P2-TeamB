@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using UnityEditor;
 
 public enum Tower
@@ -28,8 +30,16 @@ public class TowerPlacer : MonoBehaviour
     int _layerMask;
     float _rayDistance = Mathf.Infinity;
 
+    GraphicRaycaster _rayCaster;
+    PointerEventData _pointerEventData;
+    EventSystem _eventSystem;
+
     void Start()
     {
+        _rayCaster = transform.GetChild(0).GetComponent<GraphicRaycaster>();
+
+        _eventSystem = GameObject.Find("EventSystem").GetComponent<EventSystem>(); 
+
         _moneyManager = GetComponent<MoneyManager>();
         _gameState = GetComponent<GameState>();
         _layerMask = LayerMask.GetMask("BG");
@@ -47,28 +57,33 @@ public class TowerPlacer : MonoBehaviour
 
     void Update()
     {
+        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, _rayDistance, _layerMask);
         if (_currentTower)
         {
+            bool placable = false;
             SpriteRenderer spr = _towerPreview.GetComponent<SpriteRenderer>();
             spr.color = new Color(1f, 1f, 1f, 0.5f); // Reset the colour to default
 
-            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, _rayDistance, _layerMask);
 
-            if (hit.collider)
+            _pointerEventData = new PointerEventData(_eventSystem);
+            _pointerEventData.position = Input.mousePosition;
+
+            List<RaycastResult> results = new List<RaycastResult>();
+
+            _rayCaster.Raycast(_pointerEventData, results);
+
+            if (hit.collider && results.Count <= 0)
             {
                 if (hit.collider.name == "Background")
-                {
+                {     
+                    placable = true;
                     if (Input.GetMouseButtonDown(0))
-                    {
                         spawn(hit.point);
-                    }
-                }
-                else
-                {
-                    // Set colour to red as placement is invalid
-                    spr.color = new Color(1f, 0f, 0f, 0.75f);
                 }
             }
+
+            if (!placable)
+                spr.color = new Color(1f, 0f, 0f, 0.75f);
 
             // Set to mouse position
             _towerPreview.GetComponent<Transform>().position = hit.point;
@@ -81,10 +96,7 @@ public class TowerPlacer : MonoBehaviour
         }
         else
         {
-            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, _rayDistance, _layerMask);
-
-            if (hit.collider)
-                if (hit.collider.tag == "Tower")
+            if (hit.collider && hit.collider.tag == "Tower")
                     if (Input.GetMouseButtonDown(0))
                         GetComponent<TowerManager>().setTower(hit.collider.transform.parent.gameObject);
         }
