@@ -25,9 +25,12 @@ public class TowerManager : MonoBehaviour
 
     GameObject _currentTower;
 
+    private AnalyticsManager _am;
+
     private void Awake()
     {
         towerStatus.SetActive(false);
+        _am = GameObject.FindGameObjectsWithTag("Analytics")[0].GetComponent<AnalyticsManager>();
     }
 
     void Update()
@@ -71,6 +74,14 @@ public class TowerManager : MonoBehaviour
             GetComponent<MoneyManager>().soldTower(_currentTower.GetComponent<BaseTower>().getCost());
             Destroy(_currentTower);
             hide();
+
+            TowerEvent sellEvent = new TowerEvent();
+            sellEvent.id = EventID.TOWER_SELL;
+            sellEvent.type = TowerType.DART;
+            sellEvent.UID = _currentTower.GetInstanceID();
+            sellEvent.value = _currentTower.GetComponent<BaseTower>().getCost();
+            sellEvent.position = _currentTower.GetComponent<Transform>().position;
+            _am.Send(JsonUtility.ToJson(sellEvent));
         }           
     }
 

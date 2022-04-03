@@ -31,7 +31,7 @@ public class BaseTower : MonoBehaviour
     public Sprite _texture;
     protected SpriteRenderer _targetCircle;
 
-
+    private AnalyticsManager _am;
 
     public virtual void Awake()
     {
@@ -53,6 +53,7 @@ public class BaseTower : MonoBehaviour
         _upgradeScale = 1.2f;
 
         _moneyManager = GameObject.FindObjectOfType<MoneyManager>();
+        _am = GameObject.FindGameObjectsWithTag("Analytics")[0].GetComponent<AnalyticsManager>();
     }
 
     void Update()
@@ -82,11 +83,29 @@ public class BaseTower : MonoBehaviour
     {
         _range = t_range;
         _targetSystem.setRange(t_range);
+
+        TowerEvent upgradeEvent = new TowerEvent();
+        upgradeEvent.id = EventID.TOWER_UPGRADE;
+        upgradeEvent.type = TowerType.DART;
+        upgradeEvent.upgradeType = UpgradeType.RANGE;
+        upgradeEvent.UID = this.GetInstanceID();
+        upgradeEvent.value = getRangeCost();
+        upgradeEvent.position = this.GetComponent<Transform>().position;
+        _am.Send(JsonUtility.ToJson(upgradeEvent));
     }
 
     public virtual void upgradeFireRate(float t_rate)
     {
         _reloadTime = t_rate;
+
+        TowerEvent upgradeEvent = new TowerEvent();
+        upgradeEvent.id = EventID.TOWER_UPGRADE;
+        upgradeEvent.type = TowerType.DART;
+        upgradeEvent.upgradeType = UpgradeType.FIRE_RATE;
+        upgradeEvent.UID = this.GetInstanceID();
+        upgradeEvent.value = getFireRateCost();
+        upgradeEvent.position = this.GetComponent<Transform>().position;
+        _am.Send(JsonUtility.ToJson(upgradeEvent));
     }
 
     public float getWaitTime()
