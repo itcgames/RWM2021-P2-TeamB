@@ -58,6 +58,18 @@ public class TowerPlacer : MonoBehaviour
     void Update()
     {
         RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, _rayDistance, _layerMask);
+        _pointerEventData = new PointerEventData(_eventSystem);
+        _pointerEventData.position = Input.mousePosition;
+
+        List<RaycastResult> results = new List<RaycastResult>();
+
+        _rayCaster.Raycast(_pointerEventData, results);
+
+        if (GetComponent<TowerManager>().getActiveTower())
+            if (Input.GetMouseButtonDown(0))
+                if (hit.collider && results.Count <= 0)
+                    GetComponent<TowerManager>().hide();
+
         if (_currentTower)
         {
             bool placable = false;
@@ -65,12 +77,6 @@ public class TowerPlacer : MonoBehaviour
             spr.color = new Color(1f, 1f, 1f, 0.5f); // Reset the colour to default
 
 
-            _pointerEventData = new PointerEventData(_eventSystem);
-            _pointerEventData.position = Input.mousePosition;
-
-            List<RaycastResult> results = new List<RaycastResult>();
-
-            _rayCaster.Raycast(_pointerEventData, results);
 
             if (hit.collider && results.Count <= 0)
             {

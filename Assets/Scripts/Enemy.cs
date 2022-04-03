@@ -76,7 +76,7 @@ public class Enemy : MonoBehaviour
         // Completed the path
         if (progress > 1f)
         {
-            GameObject.FindObjectOfType<Life>().removeLife(1);
+            GameObject.FindObjectOfType<Life>().removeLife(_currentTier + 1);
             Kill();
         }
     }
