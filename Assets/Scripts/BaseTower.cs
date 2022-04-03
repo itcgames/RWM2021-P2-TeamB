@@ -13,7 +13,12 @@ public class BaseTower : MonoBehaviour
     [SerializeField] protected float _range = 1;
 
     [Tooltip("How much it costs to place the tower")]
-    public  int cost = 500;
+    public int cost;
+
+    float _baseUpgradeCost;
+    float _upgradeScale;
+
+    MoneyManager _moneyManager;
 
     protected GameObject _target; // object I'm firing at 
     protected TargetingSystem _targetingSystem;
@@ -22,6 +27,11 @@ public class BaseTower : MonoBehaviour
     [SerializeField] protected GameObject _projectile; // what im firing
 
     protected RangeDetection _targetSystem;
+
+    public Sprite _texture;
+    protected SpriteRenderer _targetCircle;
+
+
 
     public virtual void Awake()
     {
@@ -32,16 +42,17 @@ public class BaseTower : MonoBehaviour
         child.transform.position = transform.position;
         _targetSystem = child.AddComponent<RangeDetection>();
         _targetSystem.setRange(_range);
-        _targetSystem.OnObjectDetected += Fire;
 
-    }
+        _targetCircle = child.AddComponent<SpriteRenderer>();
+        _targetCircle.sprite = _texture;
+        _targetCircle.color = new Color(1f, 1f, 1f, .5f);
+        _targetCircle.sortingOrder = 1;
+        hideTargetCirlce();
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("tower"))
-        {
-            // Block placement
-        }
+        _baseUpgradeCost = 30f;
+        _upgradeScale = 1.2f;
+
+        _moneyManager = GameObject.FindObjectOfType<MoneyManager>();
     }
 
     void Update()
@@ -86,5 +97,60 @@ public class BaseTower : MonoBehaviour
     public float getReloadTime()
     {
         return _reloadTime;
+    }
+
+    public int getCost()
+    {
+        return cost;
+    }
+
+    public void showTargetCircle()
+    {
+        _targetCircle.enabled = true;  
+    }
+
+    public void hideTargetCirlce()
+    {
+        _targetCircle.enabled = false;
+    }
+
+    public virtual void tryUpgradeRange()
+    {
+        int upgradeCost = getRangeCost();
+        if (_moneyManager.inquire(upgradeCost))
+        {
+            int currLevel = transform.GetChild(1).GetComponent<EntityLeveling>().getLevel();
+            transform.GetChild(1).GetComponent<EntityLeveling>().levelUp();
+            int newLevel = transform.GetChild(1).GetComponent<EntityLeveling>().getLevel();
+
+            if (newLevel != currLevel)
+                _moneyManager.purchaseUpgrade(upgradeCost);
+        }
+    }
+
+    public virtual void tryUpgradeFireRate()
+    {
+        int upgradeCost = getRangeCost();
+        if (_moneyManager.inquire(upgradeCost))
+        {
+            int currLevel = transform.GetChild(2).GetComponent<EntityLeveling>().getLevel();
+            transform.GetChild(2).GetComponent<EntityLeveling>().levelUp();
+            int newLevel = transform.GetChild(2).GetComponent<EntityLeveling>().getLevel();
+
+            if (newLevel != currLevel)
+                _moneyManager.purchaseUpgrade(upgradeCost);
+        }
+    }
+
+    public virtual int getFireRateCost()
+    {
+        int level = transform.GetChild(2).GetComponent<EntityLeveling>().getLevel();
+        return Mathf.RoundToInt(_baseUpgradeCost * Mathf.Pow(_upgradeScale, level));
+    }
+
+    public virtual int getRangeCost()
+    {
+        int level = transform.GetChild(1).GetComponent<EntityLeveling>().getLevel();
+        return Mathf.RoundToInt(_baseUpgradeCost * Mathf.Pow(_upgradeScale, level));
     }
 }

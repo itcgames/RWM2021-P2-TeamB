@@ -15,7 +15,11 @@ public class TowerManager : MonoBehaviour
     public GameObject towerStatus;
     public Text _name;
     public Text _synopsis;
+    public Text _price;
     public Image _image;
+
+    [SerializeField] Button _fireRateUpgrade;
+    [SerializeField] Button _rangeUpgrade;
 
     public TowerSynposis[] _synopses;
 
@@ -30,30 +34,58 @@ public class TowerManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            towerStatus.SetActive(false);
-            _currentTower = null;
+            hide();
         }
     }
 
     public void setTower(GameObject t_towerObject)
     {
+        if (_currentTower)
+            hide();
+
         _currentTower = t_towerObject;
+        _currentTower.GetComponent<BaseTower>().showTargetCircle();
         towerStatus.SetActive(true);
-        _name.text = t_towerObject.GetComponent<BaseTower>().GetType().ToString();
+        _name.text = _currentTower.GetComponent<BaseTower>().GetType().ToString();
 
         foreach (TowerSynposis name in _synopses)
             if (name._name == _name.text)
                 _synopsis.text = name._description;
-        _image.sprite = t_towerObject.GetComponent<SpriteRenderer>().sprite;
+        _image.sprite = _currentTower.GetComponent<SpriteRenderer>().sprite;
+
+        GetComponent<LevelText>().UIUpdate();
+
+        _price.text = "Sale Price: " + Mathf.RoundToInt(_currentTower.GetComponent<BaseTower>().getCost() * .7f);
+
+        _rangeUpgrade.onClick.AddListener(_currentTower.GetComponent<BaseTower>().tryUpgradeRange);
+        _rangeUpgrade.onClick.AddListener(GetComponent<LevelText>().UIUpdate);
+
+        _fireRateUpgrade.onClick.AddListener(_currentTower.GetComponent<BaseTower>().tryUpgradeFireRate);
+        _fireRateUpgrade.onClick.AddListener(GetComponent<LevelText>().UIUpdate);
     }
 
     public void sellTower()
     {
         if (_currentTower)
         {
-            towerStatus.SetActive(false);
-            GetComponent<MoneyManager>().soldTower(_currentTower.GetComponent<BaseTower>().cost);
+            GetComponent<MoneyManager>().soldTower(_currentTower.GetComponent<BaseTower>().getCost());
             Destroy(_currentTower);
+            hide();
         }           
+    }
+
+    void hide()
+    {
+        towerStatus.SetActive(false);
+        if (_currentTower)
+            _currentTower.GetComponent<BaseTower>().hideTargetCirlce();
+        _currentTower = null;
+        _rangeUpgrade.onClick.RemoveAllListeners();
+        _fireRateUpgrade.onClick.RemoveAllListeners();
+    }
+
+    public GameObject getActiveTower()
+    {
+        return _currentTower;
     }
 }

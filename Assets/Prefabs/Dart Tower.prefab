@@ -13,9 +13,6 @@ GameObject:
   - component: {fileID: 3545069427861021261}
   - component: {fileID: 3545069427861021263}
   - component: {fileID: 4152540718952197228}
-  - component: {fileID: 289598500}
-  - component: {fileID: 289598499}
-  - component: {fileID: 962376121352387858}
   m_Layer: 0
   m_Name: Dart Tower
   m_TagString: Untagged
@@ -35,6 +32,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8194984594400096370}
+  - {fileID: 3015084431162335991}
+  - {fileID: 625421323002414796}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -63,10 +62,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _reloadTime: 1
-  _range: 4
-  cost: 75
+  _range: 3
+  cost: 50
   _projectile: {fileID: 2089367462290991759, guid: e1affd0a13a5fc14b99ec329ee885adc,
     type: 3}
+  _texture: {fileID: 21300000, guid: 6d583b33b41b5bd4183e988f9592e9a7, type: 3}
 --- !u!212 &3545069427861021263
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -136,13 +136,61 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &289598500
+--- !u!1 &6195567251824454329
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 625421323002414796}
+  - component: {fileID: 2440068828621868193}
+  - component: {fileID: 703184402556943980}
+  m_Layer: 0
+  m_Name: FireRateLevel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &625421323002414796
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6195567251824454329}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3545069427861021259}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2440068828621868193
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3545069427861021262}
+  m_GameObject: {fileID: 6195567251824454329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f1bba6a076d4964f80cd88cbdde17c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  reloadTimePerLevel:
+  - 0.75
+  - 0.625
+  - 0.5
+--- !u!114 &703184402556943980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6195567251824454329}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b565522f9694684a82519b2c6828014, type: 3}
@@ -151,49 +199,11 @@ MonoBehaviour:
   _MAX_LEVEL: 4
   _levelAbilities:
   - _boundLevel: 2
-    _ability: {fileID: 289598499}
+    _ability: {fileID: 2440068828621868193}
   - _boundLevel: 3
-    _ability: {fileID: 289598499}
+    _ability: {fileID: 2440068828621868193}
   - _boundLevel: 4
-    _ability: {fileID: 289598499}
-  - _boundLevel: 2
-    _ability: {fileID: 962376121352387858}
-  - _boundLevel: 3
-    _ability: {fileID: 962376121352387858}
-  - _boundLevel: 4
-    _ability: {fileID: 962376121352387858}
---- !u!114 &289598499
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3545069427861021262}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13de5956a0bda33499ab5486818c22bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rangePerLevel:
-  - 3
-  - 4
-  - 6
---- !u!114 &962376121352387858
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3545069427861021262}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f1bba6a076d4964f80cd88cbdde17c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  reloadTimePerLevel:
-  - 0.5
-  - 0.25
-  - 0.1
+    _ability: {fileID: 2440068828621868193}
 --- !u!1 &7345771655397575138
 GameObject:
   m_ObjectHideFlags: 0
@@ -241,3 +251,71 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1
+--- !u!1 &7611115324499057182
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3015084431162335991}
+  - component: {fileID: 3322767544633259021}
+  - component: {fileID: 3825462942230687816}
+  m_Layer: 0
+  m_Name: RangeLevel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3015084431162335991
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7611115324499057182}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3545069427861021259}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3322767544633259021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7611115324499057182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b565522f9694684a82519b2c6828014, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _MAX_LEVEL: 4
+  _levelAbilities:
+  - _boundLevel: 2
+    _ability: {fileID: 3825462942230687816}
+  - _boundLevel: 3
+    _ability: {fileID: 3825462942230687816}
+  - _boundLevel: 4
+    _ability: {fileID: 3825462942230687816}
+--- !u!114 &3825462942230687816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7611115324499057182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13de5956a0bda33499ab5486818c22bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rangePerLevel:
+  - 4
+  - 5
+  - 6

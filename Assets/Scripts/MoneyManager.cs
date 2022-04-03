@@ -38,6 +38,13 @@ public class MoneyManager : MonoBehaviour
         updateText();
     }
 
+    public void purchaseUpgrade(int t_cost)
+    {
+        _balance -= t_cost;
+        _totalSpent += t_cost;
+        updateText();
+    }
+
     public void soldTower(int t_cost)
     {
         _balance += Mathf.RoundToInt(t_cost * 0.7f);

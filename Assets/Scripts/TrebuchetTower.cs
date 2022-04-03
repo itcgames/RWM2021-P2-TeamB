@@ -6,18 +6,13 @@ public class TrebuchetTower : BaseTower
 {
     Animator _animator;
 
-    public override void Awake()
-    {
-        _range = 5;
-        _reloadTime = 2f;
-        base.Awake();
-    }
-
     public override void Fire()
     {
         if (_waitToFire <= 0)
         {
             Vector2 target = new Vector2();
+
+            if (_targetSystem.targets[0] == null) return;
 
             target = _targetSystem.targets[0].transform.position;
 
@@ -39,7 +34,9 @@ public class TrebuchetTower : BaseTower
 
         if (_targetSystem.targets.Count > 0)
         {
-            Vector2 diff = _targetSystem.targets[0].transform.position - transform.position;
+            Vector2 diff = new Vector2();
+            if (_targetSystem.targets[0] ?? false)
+                diff = _targetSystem.targets[0].transform.position - transform.position;
             float angle = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg + 90.0f;
             transform.eulerAngles = new Vector3(0, 0, angle);
 

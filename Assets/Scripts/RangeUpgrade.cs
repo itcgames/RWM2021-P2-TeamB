@@ -9,10 +9,10 @@ public class RangeUpgrade : Ability
 
     public override void execute(GameObject caller)
     {
-        Debug.Log("Upgrade");
-        int level = caller.GetComponent<EntityLeveling>().getLevel();
-        BaseTower tower = caller.GetComponent<DartTower>();
-        if (level < rangePerLevel.Length + 2)
-            tower.upgradeRange(rangePerLevel[level - 2]);
+        GameObject towerObj = caller.transform.parent.gameObject;
+        int level = caller.GetComponent<EntityLeveling>().getLevel() - 2;
+        BaseTower tower = towerObj.GetComponent<BaseTower>();
+        if (level < rangePerLevel.Length)
+            tower.upgradeRange(rangePerLevel[level]);
     }
 }

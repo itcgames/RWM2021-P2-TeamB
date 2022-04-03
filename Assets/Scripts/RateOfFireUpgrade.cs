@@ -9,10 +9,10 @@ public class RateOfFireUpgrade : Ability
 
     public override void execute(GameObject caller)
     {
-        Debug.Log("Upgrade");
-        int level = caller.GetComponent<EntityLeveling>().getLevel();
-        BaseTower tower = caller.GetComponent<DartTower>();
-        if (level < reloadTimePerLevel.Length + 2)
-            tower.upgradeFireRate(reloadTimePerLevel[level - 2]);
+        GameObject towerObj = caller.transform.parent.gameObject;
+        int level = caller.GetComponent<EntityLeveling>().getLevel() - 2;
+        BaseTower tower = towerObj.GetComponent<BaseTower>();
+        if (level < reloadTimePerLevel.Length)
+            tower.upgradeFireRate(reloadTimePerLevel[level]);
     }
 }
