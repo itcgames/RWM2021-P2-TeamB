@@ -9,6 +9,15 @@ public enum State
     Playing
 }
 
+public struct Data
+{
+    public int completion_time;
+    public int level;
+    public int moneySpent;
+    public int towersBought;
+    public int livesLeft;
+}
+
 public class GameState : MonoBehaviour
 {
     [HideInInspector]
@@ -19,13 +28,15 @@ public class GameState : MonoBehaviour
     bool _fastForward = false;
     Data _gameData;
 
+    private AnalyticsManager _am;
+
     void Start()
     {
-        _gameData.id = SystemInfo.deviceUniqueIdentifier;
         _gameData.level = 1;
         _gameData.completion_time = (int)Time.time;
 
         _spawnController = GetComponent<SpawnController>();
+        _am = GameObject.FindGameObjectsWithTag("Analytics")[0].GetComponent<AnalyticsManager>();
     }
 
     public void beginGame()
@@ -36,7 +47,6 @@ public class GameState : MonoBehaviour
         _spawnController.StartWave();
 
         fastForward();
-
     }
 
     public void fastForward()
@@ -69,9 +79,8 @@ public class GameState : MonoBehaviour
         _gameData.towersBought = money.getTowersPurchased();
         _gameData.livesLeft = GetComponent<Life>().currentLives;
 
-        GameData sender = GetComponent<GameData>();
         string gameData = JsonUtility.ToJson(_gameData);
-        Debug.Log("Sent: " + gameData);
-        StartCoroutine(sender.PostMethod(gameData));
+        _am.Send(gameData);
+        Debug.Log("Enqueued level data: " + gameData);
     }
 }
