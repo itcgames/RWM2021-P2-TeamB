@@ -58,6 +58,9 @@ public class SpawnController : MonoBehaviour
     /// </summary>
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Space) && !_started)
+            StartWave();
+
         if (!_waveCleared && !_started)
         {
             if (transform.childCount <= 1)

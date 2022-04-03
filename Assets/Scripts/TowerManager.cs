@@ -74,7 +74,7 @@ public class TowerManager : MonoBehaviour
         }           
     }
 
-    void hide()
+    public void hide()
     {
         towerStatus.SetActive(false);
         if (_currentTower)
