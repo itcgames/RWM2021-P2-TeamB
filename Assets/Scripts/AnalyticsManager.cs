@@ -4,6 +4,62 @@ using System.Net;
 using UnityEngine;
 using UnityEngine.Networking;
 
+[SerializeField, HideInInspector]
+public enum EventID
+{
+    PRE_GAME,
+    TOWER_BUY,
+    TOWER_SELL,
+    TOWER_UPGRADE,
+    POST_ROUND
+}
+
+[SerializeField, HideInInspector]
+public enum TowerType
+{
+    DART,
+    TREBUCHET
+}
+
+[SerializeField, HideInInspector]
+public enum UpgradeType
+{
+    RANGE,
+    FIRE_RATE,
+    NULL
+}
+
+[SerializeField, HideInInspector]
+public struct GameStart
+{
+    public const EventID id = EventID.PRE_GAME;
+    public int startingWaveSize;
+    public float waveIncreaseFactor;
+    public Dictionary<TowerType, int> towerBaseCost;
+    public Dictionary<TowerType, Dictionary<UpgradeType, int>> upgradeCost;
+    public Dictionary<TowerType, Dictionary<UpgradeType, float>> upgradePriceMultiplier;
+}
+
+[SerializeField, HideInInspector]
+public struct TowerEvent
+{
+    public EventID id;
+    public TowerType type;
+    public UpgradeType upgradeType;
+    public int UID;
+    public int value;
+    public Vector2 position;
+}
+
+[SerializeField, HideInInspector]
+public struct RoundEnd
+{
+    public const EventID id = EventID.POST_ROUND;
+    public Dictionary<int, int> killCountPerTower;
+    public int livesLost;
+    public int moneyEarned;
+}
+
 public class AnalyticsManager : MonoBehaviour
 {
     private static Queue<string> _dataQueue = new Queue<string>();
@@ -18,6 +74,7 @@ public class AnalyticsManager : MonoBehaviour
     {
         data = AddTimestamp(AddID(data));
         _dataQueue.Enqueue(data);
+        Debug.Log("Enqueueing new event");
     }
 
     private IEnumerator Poll()

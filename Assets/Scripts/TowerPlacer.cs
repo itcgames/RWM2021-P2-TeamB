@@ -34,6 +34,8 @@ public class TowerPlacer : MonoBehaviour
     PointerEventData _pointerEventData;
     EventSystem _eventSystem;
 
+    private AnalyticsManager _am;
+
     void Start()
     {
         _rayCaster = transform.GetChild(0).GetComponent<GraphicRaycaster>();
@@ -53,6 +55,8 @@ public class TowerPlacer : MonoBehaviour
         r.sortingOrder = 1;
 
         SetCurrentTower(-1);
+
+        _am = GameObject.FindGameObjectsWithTag("Analytics")[0].GetComponent<AnalyticsManager>();
     }
 
     void Update()
@@ -127,6 +131,14 @@ public class TowerPlacer : MonoBehaviour
                 _moneyManager.purchasedTower(cost);
 
                 Instantiate(_currentTower, _point, Quaternion.identity);
+
+                TowerEvent buyEvent = new TowerEvent();
+                buyEvent.id = EventID.TOWER_BUY;
+                buyEvent.type = TowerType.DART;
+                buyEvent.UID = _currentTower.GetInstanceID();
+                buyEvent.value = _currentTower.GetComponent<BaseTower>().getCost();
+                buyEvent.position = _currentTower.GetComponent<Transform>().position;
+                _am.Send(JsonUtility.ToJson(buyEvent));
 
                 _currentTower = null;
                 _towerPreview.SetActive(false);
