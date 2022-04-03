@@ -1024,18 +1024,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 760998239}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1542421560}
-        m_MethodName: sellTower
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &858883270
 GameObject:
   m_ObjectHideFlags: 0
@@ -1410,18 +1399,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1391239362}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1542421560}
-        m_MethodName: sellTower
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &1423172728
 GameObject:
   m_ObjectHideFlags: 0
@@ -2458,6 +2436,7 @@ GameObject:
   - component: {fileID: 234780168}
   - component: {fileID: 1241796561}
   - component: {fileID: 1542421560}
+  - component: {fileID: 826031600}
   m_Layer: 0
   m_Name: LifeSystem
   m_TagString: GameController
@@ -2597,6 +2576,8 @@ MonoBehaviour:
   _synopsis: {fileID: 4588182867010491902}
   _price: {fileID: 381044729}
   _image: {fileID: 1792356674519096067}
+  _fireRateUpgrade: {fileID: 760998238}
+  _rangeUpgrade: {fileID: 1391239361}
   _synopses:
   - _name: DartTower
     _description: The Dart Tower is a fast firing tower designed to deal with a steady
@@ -2605,6 +2586,20 @@ MonoBehaviour:
   - _name: TrebuchetTower
     _description: The Trebuchet Tower will destroy any and all enemies that stand
       before it. The only flaw to this tower is it's extensive reload time.
+--- !u!114 &826031600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2968290796537534433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e95c086832c9065429d0835863138373, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rangeText: {fileID: 568807610}
+  _fireRateText: {fileID: 419651414}
 --- !u!1 &3040762393095291776
 GameObject:
   m_ObjectHideFlags: 0
@@ -2622,7 +2617,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &7937159799527239955
 RectTransform:
   m_ObjectHideFlags: 0

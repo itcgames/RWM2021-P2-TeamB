@@ -41,7 +41,7 @@ public class TowerManager : MonoBehaviour
     public void setTower(GameObject t_towerObject)
     {
         if (_currentTower)
-            _currentTower.GetComponent<BaseTower>().hideTargetCirlce();
+            hide();
 
         _currentTower = t_towerObject;
         _currentTower.GetComponent<BaseTower>().showTargetCircle();
@@ -53,11 +53,15 @@ public class TowerManager : MonoBehaviour
                 _synopsis.text = name._description;
         _image.sprite = _currentTower.GetComponent<SpriteRenderer>().sprite;
 
+        GetComponent<LevelText>().UIUpdate();
+
         _price.text = "Sale Price: " + Mathf.RoundToInt(_currentTower.GetComponent<BaseTower>().getCost() * .7f);
 
-        _rangeUpgrade.onClick.AddListener(_currentTower.transform.GetChild(1).GetComponent<EntityLeveling>().levelUp);
+        _rangeUpgrade.onClick.AddListener(_currentTower.GetComponent<BaseTower>().tryUpgradeRange);
+        _rangeUpgrade.onClick.AddListener(GetComponent<LevelText>().UIUpdate);
 
-        _fireRateUpgrade.onClick.AddListener(_currentTower.transform.GetChild(2).GetComponent<EntityLeveling>().levelUp);
+        _fireRateUpgrade.onClick.AddListener(_currentTower.GetComponent<BaseTower>().tryUpgradeFireRate);
+        _fireRateUpgrade.onClick.AddListener(GetComponent<LevelText>().UIUpdate);
     }
 
     public void sellTower()
@@ -76,5 +80,12 @@ public class TowerManager : MonoBehaviour
         if (_currentTower)
             _currentTower.GetComponent<BaseTower>().hideTargetCirlce();
         _currentTower = null;
+        _rangeUpgrade.onClick.RemoveAllListeners();
+        _fireRateUpgrade.onClick.RemoveAllListeners();
+    }
+
+    public GameObject getActiveTower()
+    {
+        return _currentTower;
     }
 }
